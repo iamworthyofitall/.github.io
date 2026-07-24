@@ -146,6 +146,11 @@
 
 			.items.style1 section { border-color: rgba(27, 81, 106, 0.2) !important; }
 
+			label[for="datenschutz"]::before,
+			label[for="datenschutz"]::after {
+				content: none !important;
+				display: none !important;
+			}
 			input#datenschutz[type="checkbox"] {
 				display: inline-block !important;
 				visibility: visible !important;
@@ -160,6 +165,9 @@
 				border-radius: 4px !important;
 				background-color: transparent !important;
 				position: relative !important;
+				z-index: 10 !important;
+				pointer-events: auto !important;
+				cursor: pointer !important;
 			}
 			#datenschutz:checked {
 				background-color: #1b516a !important;
@@ -526,8 +534,8 @@
 						<input type="checkbox" name="botcheck" style="display:none;" />
 
 						<div class="field" style="margin-top: 1rem !important;">
-							<label for="datenschutz" style="display:block !important; margin-bottom:0 !important;">
-								<span style="display:flex !important; align-items:flex-start; justify-content:center; gap:0.6rem; width:100%;">
+							<label for="datenschutz" style="display:block !important; margin-bottom:0 !important; cursor:pointer;">
+								<span style="display:flex !important; align-items:flex-start; justify-content:center; gap:0.6rem; width:100%; pointer-events:auto;">
 									<input type="checkbox" name="datenschutz" id="datenschutz" required style="display:inline-block !important; visibility:visible !important; opacity:1 !important; -webkit-appearance:none !important; -moz-appearance:none !important; appearance:none !important; width:18px !important; height:18px !important; min-width:18px !important; min-height:18px !important; max-width:18px !important; max-height:18px !important; margin:0.1rem 0 0 0 !important; padding:0 !important; flex-shrink:0 !important; border:1.5px solid rgba(27, 81, 106, 0.4) !important; border-radius:4px !important; background-color:transparent !important; background-image:none !important; cursor:pointer !important; position:relative !important; top:auto !important; left:auto !important; z-index:1 !important; box-shadow:none !important; float:none !important; transform:none !important; pointer-events:auto !important;" />
 									<span style="display:inline; color:#1b516a; opacity:0.5; font-size:0.8rem; font-weight:400; text-align:left;">Ja, ich habe die <a href="datenschutz.html" target="_blank" style="color:#1b516a !important; opacity:1;">Datenschutzerklärung</a> zur Kenntnis genommen und bin mit der vertraulichen Verarbeitung meiner Daten einverstanden.</span>
 								</span>
@@ -626,7 +634,7 @@
 				}
 
 				if (message === '') {
-					errorMessage.textContent = 'Bitte teile mir dein Anliegen mit.';
+					errorMessage.textContent = 'Bitte teile mir den Grund für deine Kontaktaufnahme mit.';
 					errorMessage.style.display = 'block';
 					document.getElementById('message').focus();
 					return;
