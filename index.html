@@ -146,6 +146,22 @@
 
 			.items.style1 section { border-color: rgba(27, 81, 106, 0.2) !important; }
 
+			#datenschutz:checked {
+				background-color: #1b516a !important;
+				border-color: #1b516a !important;
+			}
+			#datenschutz:checked::after {
+				content: '';
+				position: absolute;
+				left: 5px;
+				top: 1px;
+				width: 5px;
+				height: 9px;
+				border: solid #ffffff;
+				border-width: 0 2px 2px 0;
+				transform: rotate(45deg);
+			}
+
 			/* Buttons - normal */
 			.button, a.button, input[type="submit"], button[type="submit"] {
 				border-color: rgba(27, 81, 106, 0.4) !important;
@@ -494,15 +510,15 @@
 						<!-- Web3Forms Honeypot -->
 						<input type="checkbox" name="botcheck" style="display:none;" />
 
-						<div class="field" style="margin-top: 1rem;">
-							<label for="datenschutz" style="display:flex; align-items:flex-start; gap:0.6rem; font-size:0.8rem; font-weight:400; text-transform:none;">
-								<input type="checkbox" name="datenschutz" id="datenschutz" required style="-webkit-appearance:checkbox !important; -moz-appearance:checkbox !important; appearance:checkbox !important; width:16px !important; height:16px !important; min-width:16px !important; opacity:1 !important; margin:0.15rem 0 0 0 !important; flex-shrink:0; accent-color:#1b516a;" />
-								<span style="color:#1b516a; opacity:0.5;">Ja, ich habe die <a href="datenschutz.html" target="_blank" style="color:#1b516a !important; opacity:1;">Datenschutzerklärung</a> zur Kenntnis genommen und bin mit der vertraulichen Verarbeitung meiner Daten einverstanden.</span>
+						<div class="field" style="margin-top: 2rem !important;">
+							<label for="datenschutz" style="display:flex; align-items:flex-start; justify-content:center; gap:0.6rem; font-size:0.8rem; font-weight:400; text-transform:none; text-align:left !important;">
+								<input type="checkbox" name="datenschutz" id="datenschutz" required style="-webkit-appearance:none; -moz-appearance:none; appearance:none; width:18px !important; height:18px !important; min-width:18px !important; margin:0.1rem 0.6rem 0 0 !important; flex-shrink:0; border:1.5px solid rgba(27, 81, 106, 0.4) !important; border-radius:4px !important; background:transparent; cursor:pointer; position:relative; box-shadow:none !important;" />
+								<span style="color:#1b516a; opacity:0.5; text-align:left !important;">Ja, ich habe die <a href="datenschutz.html" target="_blank" style="color:#1b516a !important; opacity:1;">Datenschutzerklärung</a> zur Kenntnis genommen und bin mit der vertraulichen Verarbeitung meiner Daten einverstanden.</span>
 							</label>
 							<p id="error-datenschutz" style="display:none; color:#1b516a; font-size:0.85rem; line-height:1.6; margin-top:0.3rem; background:#e8a22c; padding:0.4em 0.6em; border-radius:4px;"></p>
 						</div>
 
-						<ul class="actions special">
+						<ul class="actions special" style="margin-top: 2rem !important;">
 							<li><input type="submit" id="submit-btn" value="Nachricht an Daniela senden" /></li>
 						</ul>
 
@@ -600,7 +616,7 @@
 				}
 
 				if (!document.getElementById('datenschutz').checked) {
-					errorDatenschutz.textContent = 'Bitte bestätige, dass du die Datenschutzerklärung gelesen hast.';
+					errorDatenschutz.textContent = 'Bitte bestätige die Datenschutzerklärung und dass du mit der vertraulichen Verarbeitung deiner Daten einverstanden bist.';
 					errorDatenschutz.style.display = 'block';
 					document.getElementById('datenschutz').focus();
 					return;
