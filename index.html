@@ -455,7 +455,7 @@
 					<p style="margin-bottom: 0 !important; margin-top: 1.5rem !important;">Ich freue mich auf deine Nachricht.</p>
 					<form method="post" action="https://api.web3forms.com/submit" id="kontaktform" novalidate style="margin-top: 2.5rem !important;">
 						<input type="hidden" name="access_key" value="c63181c9-d933-462b-9041-36f4e16583ec" />
-						<input type="hidden" name="subject" value="Neue Kontaktanfrage – I AM worthy of it all” />
+						<input type="hidden" name="subject" value="Neue Kontaktanfrage – I AM worthy of it all" />
 						<input type="hidden" name="from_name" value="Website Kontaktformular" />
 
 						<!-- Honeypot: für Menschen unsichtbar, Bots füllen es aus -->
@@ -494,13 +494,19 @@
 						<!-- Web3Forms Honeypot -->
 						<input type="checkbox" name="botcheck" style="display:none;" />
 
+						<div class="field" style="margin-top: 1rem;">
+							<label for="datenschutz" style="display:flex; align-items:flex-start; gap:0.6rem; font-size:0.9rem; font-weight:400; text-transform:none;">
+								<input type="checkbox" name="datenschutz" id="datenschutz" required style="width:auto; margin-top:0.25rem; flex-shrink:0;" />
+								<span>Ja, ich habe die <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a> zur Kenntnis genommen und bin mit der vertraulichen Verarbeitung meiner Daten einverstanden. *</span>
+							</label>
+							<p id="error-datenschutz" style="display:none; color:#1b516a; font-size:0.85rem; line-height:1.6; margin-top:0.3rem; background:#e8a22c; padding:0.4em 0.6em; border-radius:4px;"></p>
+						</div>
+
 						<ul class="actions special">
 							<li><input type="submit" id="submit-btn" value="Nachricht an Daniela senden" /></li>
 						</ul>
 
 						<p id="form-success" style="display:none; color:#1b516a; margin-top:1rem; font-size:0.85rem; line-height:1.6; text-align:center; background:#e8a22c; padding:0.6em 1em; border-radius:4px;">Du Herz, Danke für deine Nachricht!<br>Ich freue mich, von dir zu lesen und antworte dir so schnell wie möglich persönlich.</p>
-
-						<p id="disclaimer-hinweis" style="font-size: 0.8rem !important; opacity: 0.5 !important; text-align: center !important; margin-top: 2.5rem !important;">Mit dem Absenden des Formulars erklärst du dich mit der Verarbeitung deiner Daten gemäß meiner <a href="datenschutz.html" style="color:#1b516a !important; opacity: 1;">Datenschutzerklärung</a> einverstanden.</p>
 					</form>
 				</div>
 			</section>
@@ -543,10 +549,12 @@
 				var errorName = document.getElementById('error-name');
 				var errorEmail = document.getElementById('error-email');
 				var errorMessage = document.getElementById('error-message');
+				var errorDatenschutz = document.getElementById('error-datenschutz');
 				function clearErrors() {
 					errorName.style.display = 'none';
 					errorEmail.style.display = 'none';
 					errorMessage.style.display = 'none';
+					errorDatenschutz.style.display = 'none';
 				}
 				var successEl = document.getElementById('form-success');
 				clearErrors();
@@ -588,6 +596,13 @@
 					errorMessage.textContent = 'Bitte teile mir dein Anliegen mit.';
 					errorMessage.style.display = 'block';
 					document.getElementById('message').focus();
+					return;
+				}
+
+				if (!document.getElementById('datenschutz').checked) {
+					errorDatenschutz.textContent = 'Bitte bestätige, dass du die Datenschutzerklärung gelesen hast.';
+					errorDatenschutz.style.display = 'block';
+					document.getElementById('datenschutz').focus();
 					return;
 				}
 
