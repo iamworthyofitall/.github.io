@@ -259,6 +259,10 @@
 				}
 			}
 			.no-gap, p.no-gap, .spotlight .content p.no-gap { margin-bottom: 0 !important; padding-bottom: 0 !important; }
+			.desktop-break { display: none; }
+			@media screen and (min-width: 737px) {
+				.desktop-break { display: inline; }
+			}
 		</style>
 		<link rel="preload" href="images/banner.webp" as="image" />
 		<link rel="preload" href="images/banner-bg.jpg" as="image" />
@@ -440,7 +444,7 @@
 			<section class="wrapper style1 align-center" id="kontakt">
 				<div class="inner medium" style="padding-bottom: 16px !important;">
 					<h2>Erzähl mir, wo du gerade stehst.</h2>
-					<p>Schreib mir unverbindlich eine E-Mail an <a href="mailto:hi@iamworthyofitall.com" style="color:#1b516a !important; border-bottom-color:#1b516a !important;">hi@iamworthyofitall.com</a> oder nutze das Kontaktformular unten.</p>
+					<p>Schreib mir unverbindlich eine E-Mail an <a href="mailto:hi@iamworthyofitall.com" style="color:#1b516a !important; border-bottom-color:#1b516a !important;">hi@iamworthyofitall.com</a><span class="desktop-break"><br></span> oder nutze das Kontaktformular unten.</p>
 					<p style="margin-bottom: 2rem !important;">Ich freue mich auf deine Nachricht.</p>
 					<p>&nbsp;</p>
 					<form method="post" action="https://api.web3forms.com/submit" id="kontaktform" novalidate>
