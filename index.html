@@ -513,7 +513,7 @@
 						<div class="field" id="datenschutz-field" style="margin-top: 1rem !important;">
 							<div style="display:flex; align-items:flex-start; justify-content:center; gap:0.6rem; width:100%;">
 								<div id="datenschutz-box" role="checkbox" aria-checked="false" tabindex="0" style="display:inline-block; width:18px; height:18px; min-width:18px; flex-shrink:0; border:1.5px solid rgba(27, 81, 106, 0.4); border-radius:4px; background-color:transparent; cursor:pointer; position:relative; margin-top:0.1rem;"></div>
-								<input type="checkbox" name="datenschutz" id="datenschutz" required style="display:none;" />
+								<input type="hidden" name="datenschutz" id="datenschutz" value="" />
 								<label for="datenschutz-box" style="display:inline; color:#1b516a; opacity:0.5; font-size:0.8rem; font-weight:400; text-align:left; cursor:pointer; margin:0;">Ja, ich habe die <a href="datenschutz.html" target="_blank" style="color:#1b516a !important; opacity:1;">Datenschutzerklärung</a> zur Kenntnis genommen und bin mit der vertraulichen Verarbeitung meiner Daten einverstanden.</label>
 							</div>
 							<p id="error-datenschutz" style="display:none; color:#1b516a; font-size:0.85rem; line-height:1.6; margin-top:0.3rem; background:#e8a22c; padding:0.4em 0.6em; border-radius:4px;"></p>
@@ -564,12 +564,13 @@
 			// Datenschutz-Kästchen: eigenständiges div-Element, komplett von hier gesteuert.
 			(function() {
 				var box = document.getElementById('datenschutz-box');
-				var checkbox = document.getElementById('datenschutz');
-				if (box && checkbox) {
+				var hiddenField = document.getElementById('datenschutz');
+				if (box && hiddenField) {
 					function toggle() {
-						checkbox.checked = !checkbox.checked;
-						box.classList.toggle('is-checked', checkbox.checked);
-						box.setAttribute('aria-checked', checkbox.checked ? 'true' : 'false');
+						var isChecked = hiddenField.value === 'ja';
+						hiddenField.value = isChecked ? '' : 'ja';
+						box.classList.toggle('is-checked', !isChecked);
+						box.setAttribute('aria-checked', !isChecked ? 'true' : 'false');
 					}
 					box.addEventListener('click', toggle);
 					box.addEventListener('keydown', function(e) {
@@ -640,10 +641,10 @@
 					return;
 				}
 
-				if (!document.getElementById('datenschutz').checked) {
+				if (document.getElementById('datenschutz').value !== 'ja') {
 					errorDatenschutz.textContent = 'Bitte bestätige die Datenschutzerklärung und dass du mit der vertraulichen Verarbeitung deiner Daten einverstanden bist.';
 					errorDatenschutz.style.display = 'block';
-					document.getElementById('datenschutz').focus();
+					document.getElementById('datenschutz-box').focus();
 					return;
 				}
 
