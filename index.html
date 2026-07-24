@@ -146,34 +146,11 @@
 
 			.items.style1 section { border-color: rgba(27, 81, 106, 0.2) !important; }
 
-			label[for="datenschutz"]::before,
-			label[for="datenschutz"]::after {
-				content: none !important;
-				display: none !important;
-			}
-			input#datenschutz[type="checkbox"] {
-				display: inline-block !important;
-				visibility: visible !important;
-				opacity: 1 !important;
-				appearance: none !important;
-				-webkit-appearance: none !important;
-				-moz-appearance: none !important;
-				width: 18px !important;
-				height: 18px !important;
-				min-width: 18px !important;
-				border: 1.5px solid rgba(27, 81, 106, 0.4) !important;
-				border-radius: 4px !important;
-				background-color: transparent !important;
-				position: relative !important;
-				z-index: 10 !important;
-				pointer-events: auto !important;
-				cursor: pointer !important;
-			}
-			#datenschutz:checked {
+			#datenschutz-box.is-checked {
 				background-color: #1b516a !important;
 				border-color: #1b516a !important;
 			}
-			#datenschutz:checked::after {
+			#datenschutz-box.is-checked::after {
 				content: '';
 				position: absolute;
 				left: 5px;
@@ -534,12 +511,11 @@
 						<input type="checkbox" name="botcheck" style="display:none;" />
 
 						<div class="field" id="datenschutz-field" style="margin-top: 1rem !important;">
-							<label for="datenschutz" style="display:block !important; margin-bottom:0 !important; cursor:pointer;">
-								<span style="display:flex !important; align-items:flex-start; justify-content:center; gap:0.6rem; width:100%; pointer-events:auto;">
-									<input type="checkbox" name="datenschutz" id="datenschutz" required style="display:inline-block !important; visibility:visible !important; opacity:1 !important; -webkit-appearance:none !important; -moz-appearance:none !important; appearance:none !important; width:18px !important; height:18px !important; min-width:18px !important; min-height:18px !important; max-width:18px !important; max-height:18px !important; margin:0.1rem 0 0 0 !important; padding:0 !important; flex-shrink:0 !important; border:1.5px solid rgba(27, 81, 106, 0.4) !important; border-radius:4px !important; background-color:transparent !important; background-image:none !important; cursor:pointer !important; position:relative !important; top:auto !important; left:auto !important; z-index:1 !important; box-shadow:none !important; float:none !important; transform:none !important; pointer-events:auto !important;" />
-									<span style="display:inline; color:#1b516a; opacity:0.5; font-size:0.8rem; font-weight:400; text-align:left;">Ja, ich habe die <a href="datenschutz.html" target="_blank" style="color:#1b516a !important; opacity:1;">Datenschutzerklärung</a> zur Kenntnis genommen und bin mit der vertraulichen Verarbeitung meiner Daten einverstanden.</span>
-								</span>
-							</label>
+							<div style="display:flex; align-items:flex-start; justify-content:center; gap:0.6rem; width:100%;">
+								<div id="datenschutz-box" role="checkbox" aria-checked="false" tabindex="0" style="display:inline-block; width:18px; height:18px; min-width:18px; flex-shrink:0; border:1.5px solid rgba(27, 81, 106, 0.4); border-radius:4px; background-color:transparent; cursor:pointer; position:relative; margin-top:0.1rem;"></div>
+								<input type="checkbox" name="datenschutz" id="datenschutz" required style="display:none;" />
+								<label for="datenschutz-box" style="display:inline; color:#1b516a; opacity:0.5; font-size:0.8rem; font-weight:400; text-align:left; cursor:pointer; margin:0;">Ja, ich habe die <a href="datenschutz.html" target="_blank" style="color:#1b516a !important; opacity:1;">Datenschutzerklärung</a> zur Kenntnis genommen und bin mit der vertraulichen Verarbeitung meiner Daten einverstanden.</label>
+							</div>
 							<p id="error-datenschutz" style="display:none; color:#1b516a; font-size:0.85rem; line-height:1.6; margin-top:0.3rem; background:#e8a22c; padding:0.4em 0.6em; border-radius:4px;"></p>
 						</div>
 
@@ -585,18 +561,27 @@
 			// }
 			// generateCaptcha();
 
-			// Datenschutz-Checkbox: eigener Klick-Handler, falls das Theme (main.js)
-			// die native Checkbox mit einem eigenen Klick-Element überlagert.
+			// Datenschutz-Kästchen: eigenständiges div-Element, komplett von hier gesteuert.
 			(function() {
-				var field = document.getElementById('datenschutz-field');
+				var box = document.getElementById('datenschutz-box');
 				var checkbox = document.getElementById('datenschutz');
-				if (field && checkbox) {
-					field.addEventListener('click', function(e) {
-						// Klicks auf den Link "Datenschutzerklärung" normal funktionieren lassen
-						if (e.target.tagName === 'A') { return; }
-						e.preventDefault();
+				if (box && checkbox) {
+					function toggle() {
 						checkbox.checked = !checkbox.checked;
-					}, true); // Capture-Phase: greift vor Theme-Skripten
+						box.classList.toggle('is-checked', checkbox.checked);
+						box.setAttribute('aria-checked', checkbox.checked ? 'true' : 'false');
+					}
+					box.addEventListener('click', toggle);
+					box.addEventListener('keydown', function(e) {
+						if (e.key === ' ' || e.key === 'Enter') {
+							e.preventDefault();
+							toggle();
+						}
+					});
+					document.getElementById('datenschutz-field').addEventListener('click', function(e) {
+						if (e.target.id === 'datenschutz-box' || e.target.tagName === 'A') { return; }
+						toggle();
+					});
 				}
 			})();
 
