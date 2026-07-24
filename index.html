@@ -533,7 +533,7 @@
 						<!-- Web3Forms Honeypot -->
 						<input type="checkbox" name="botcheck" style="display:none;" />
 
-						<div class="field" style="margin-top: 1rem !important;">
+						<div class="field" id="datenschutz-field" style="margin-top: 1rem !important;">
 							<label for="datenschutz" style="display:block !important; margin-bottom:0 !important; cursor:pointer;">
 								<span style="display:flex !important; align-items:flex-start; justify-content:center; gap:0.6rem; width:100%; pointer-events:auto;">
 									<input type="checkbox" name="datenschutz" id="datenschutz" required style="display:inline-block !important; visibility:visible !important; opacity:1 !important; -webkit-appearance:none !important; -moz-appearance:none !important; appearance:none !important; width:18px !important; height:18px !important; min-width:18px !important; min-height:18px !important; max-width:18px !important; max-height:18px !important; margin:0.1rem 0 0 0 !important; padding:0 !important; flex-shrink:0 !important; border:1.5px solid rgba(27, 81, 106, 0.4) !important; border-radius:4px !important; background-color:transparent !important; background-image:none !important; cursor:pointer !important; position:relative !important; top:auto !important; left:auto !important; z-index:1 !important; box-shadow:none !important; float:none !important; transform:none !important; pointer-events:auto !important;" />
@@ -584,6 +584,21 @@
 			// 	document.getElementById('captcha').value = '';
 			// }
 			// generateCaptcha();
+
+			// Datenschutz-Checkbox: eigener Klick-Handler, falls das Theme (main.js)
+			// die native Checkbox mit einem eigenen Klick-Element überlagert.
+			(function() {
+				var field = document.getElementById('datenschutz-field');
+				var checkbox = document.getElementById('datenschutz');
+				if (field && checkbox) {
+					field.addEventListener('click', function(e) {
+						// Klicks auf den Link "Datenschutzerklärung" normal funktionieren lassen
+						if (e.target.tagName === 'A') { return; }
+						e.preventDefault();
+						checkbox.checked = !checkbox.checked;
+					}, true); // Capture-Phase: greift vor Theme-Skripten
+				}
+			})();
 
 			document.getElementById('kontaktform').addEventListener('submit', function(e) {
 				e.preventDefault();
