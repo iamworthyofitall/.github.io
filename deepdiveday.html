@@ -55,6 +55,13 @@
 					background-attachment: scroll; /* fixed macht auf vielen Mobilgeräten Probleme */
 				}
 			}
+			/* Theme setzt bei style1-Sections eine eigene (weiße) Hintergrundfarbe,
+			   die das body-Hintergrundbild verdeckt - hier deaktiviert */
+			#wrapper .wrapper.style1,
+			#wrapper .spotlight.style1,
+			footer.wrapper.style1 {
+				background: transparent !important;
+			}
 			#video-hero {
 				position: relative;
 				width: 100%;
