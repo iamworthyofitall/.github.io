@@ -73,15 +73,28 @@
 				background-position: center;
 				background-repeat: no-repeat;
 				overflow: hidden;
-				padding: 5mm;
+				padding: 5mm 5mm calc(5mm + 3rem) 5mm;
 				box-sizing: border-box;
+				display: flex;
+				justify-content: center;
 			}
-			#video-hero video {
-				display: block;
+			.video-frame {
+				position: relative;
 				width: 100%;
-				height: auto;
-				max-height: calc(100vh - 10mm);
+				max-width: 420px;
+				aspect-ratio: 9 / 16;
 				margin: 0 auto;
+				overflow: hidden;
+				border-radius: 4px;
+			}
+			.video-frame video {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				border: 0;
 			}
 
 			/* Preis-/Info-Box */
@@ -134,14 +147,16 @@
 
 			<!-- Video Hero -->
 			<section id="video-hero">
-				<video
-					src="deepdiveday.mp4"
-					controls
-					playsinline
-					preload="metadata"
-					style="width:100%; height:auto;">
-					Dein Browser unterstützt das Videoformat leider nicht.
-				</video>
+				<div class="video-frame">
+					<video
+						src="https://dl.dropboxusercontent.com/scl/fi/2mryani0tqcmogjzst96j/deepdiveday.MOV?rlkey=mipkqnnsmbu5zfi5ojk9csh8p&raw=1"
+						poster="images/deepdiveday-selfie.jpg"
+						controls
+						playsinline
+						preload="metadata">
+						Dein Browser unterstützt das Videoformat leider nicht.
+					</video>
+				</div>
 			</section>
 
 			<!-- Einleitung -->
