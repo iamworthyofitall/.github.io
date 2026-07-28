@@ -43,7 +43,18 @@
 			body, p, h1, h2, h3, h4, h5, h6, li, label, input, textarea, blockquote { color: #1b516a !important; }
 			.wrapper .inner p { color: #1b516a !important; }
 
-			/* Video-Hero */
+			body {
+				background-image: url('images/deepdiveday-bg.jpg');
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+				background-attachment: fixed;
+			}
+			@media (max-width: 736px) {
+				body {
+					background-attachment: scroll; /* fixed macht auf vielen Mobilgeräten Probleme */
+				}
+			}
 			#video-hero {
 				position: relative;
 				width: 100%;
