@@ -47,14 +47,19 @@
 			#video-hero {
 				position: relative;
 				width: 100%;
-				background: #1b516a;
+				background-image: url('images/spotlight-bg.png');
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
 				overflow: hidden;
+				padding: 5mm;
+				box-sizing: border-box;
 			}
 			#video-hero video {
 				display: block;
 				width: 100%;
 				height: auto;
-				max-height: 100vh;
+				max-height: calc(100vh - 10mm);
 				margin: 0 auto;
 			}
 
