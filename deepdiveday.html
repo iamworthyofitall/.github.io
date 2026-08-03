@@ -59,24 +59,25 @@
 				}
 			}
 			/* Theme setzt bei style1-Sections eine eigene (weiße) Hintergrundfarbe,
-			   die das body-Hintergrundbild verdeckt - hier deaktiviert */
+			   die das body-Hintergrundbild verdeckt - hier deaktiviert (Standard: sandgelb durchscheinend) */
 			#wrapper .wrapper.style1,
 			#wrapper .spotlight.style1,
 			footer.wrapper.style1 {
 				background: transparent !important;
 			}
-			#video-hero {
+
+			/* Hero-Bereich: Video + Überschrift, fliederfarbener Hintergrund */
+			#hero {
 				position: relative;
 				width: 100%;
 				background-image: url('images/spotlight-bg.jpg');
 				background-size: cover;
 				background-position: center;
 				background-repeat: no-repeat;
-				overflow: hidden;
-				padding: 5mm 5mm calc(5mm + 3rem) 5mm;
 				box-sizing: border-box;
-				display: flex;
-				justify-content: center;
+			}
+			#hero .inner, #hero.wrapper {
+				background: transparent !important;
 			}
 			.video-frame {
 				position: relative;
@@ -97,27 +98,39 @@
 				border: 0;
 			}
 
+			/* Kontakt-Bereich: rein weißer Hintergrund, überschreibt body-Bild */
+			#kontakt-bereich {
+				background-color: #ffffff !important;
+				background-image: none !important;
+			}
+			#kontakt-bereich .inner {
+				background: transparent !important;
+			}
+
+			/* Listen im Haupttext */
+			.dd-list {
+				list-style: none;
+				margin: 0 0 1.2em 0;
+				padding: 0;
+				text-align: left;
+				max-width: 600px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			.dd-list li {
+				margin-bottom: 0.5em;
+				line-height: 1.6;
+			}
+
 			/* Preis-/Info-Box */
 			.info-box {
 				background: rgba(197, 178, 201, 0.2);
 				border: 1.5px solid rgba(27, 81, 106, 0.3);
 				border-radius: 8px;
 				padding: 1.5em 2em;
-				margin: 2em 0;
+				margin: 1.5em auto;
+				max-width: 600px;
 				text-align: center;
-			}
-			.info-box .price {
-				font-size: 1.8rem;
-				font-weight: 600;
-				color: #e8a22c !important;
-				margin: 0.3em 0;
-			}
-			.placeholder {
-				background: #e8a22c;
-				color: #1b516a !important;
-				padding: 0.1em 0.4em;
-				border-radius: 3px;
-				font-size: 0.85em;
 			}
 
 			/* CTA-Button */
@@ -139,72 +152,202 @@
 				background: #1b516a;
 				color: #ffffff !important;
 			}
+
+			/* Kontaktformular (wie index.html) */
+			#kontaktform .field {
+				margin-bottom: 0.8rem !important;
+			}
+			#kontaktform .field label {
+				display: block !important;
+				margin-bottom: 0.4rem !important;
+			}
+			#kontaktform .field input,
+			#kontaktform .field textarea {
+				margin-top: 0 !important;
+			}
+			#kontaktform label {
+				font-family: 'Quicksand', sans-serif !important;
+				color: #1b516a !important;
+			}
+			#kontaktform input[type="text"],
+			#kontaktform input[type="email"],
+			#kontaktform textarea {
+				border-radius: 8px !important;
+			}
+			#datenschutz-box.is-checked {
+				background-color: #1b516a !important;
+				border-color: #1b516a !important;
+			}
+			#datenschutz-box.is-checked::after {
+				content: '';
+				position: absolute;
+				left: 5px;
+				top: 1px;
+				width: 5px;
+				height: 9px;
+				border: solid #ffffff;
+				border-width: 0 2px 2px 0;
+				transform: rotate(45deg);
+			}
+			.button, a.button, input[type="submit"], button[type="submit"] {
+				border-color: rgba(27, 81, 106, 0.4) !important;
+				color: #1b516a !important;
+				background: transparent !important;
+				box-shadow: inset 0 0 0 2px rgba(27, 81, 106, 0.4) !important;
+			}
+			.button:hover, a.button:hover, input[type="submit"]:hover, button[type="submit"]:hover,
+			.button:active, a.button:active, input[type="submit"]:active {
+				background: #1b516a !important;
+				color: #ffffff !important;
+				border-color: #1b516a !important;
+				box-shadow: inset 0 0 0 2px #1b516a !important;
+			}
+			input[type="text"],
+			input[type="email"],
+			textarea {
+				border-color: rgba(27, 81, 106, 0.35) !important;
+				box-shadow: inset 0 0 0 1px rgba(27, 81, 106, 0.35) !important;
+			}
+			textarea::placeholder {
+				color: rgba(27, 81, 106, 0.45) !important;
+				font-family: 'Quicksand', sans-serif !important;
+			}
+			input[type="text"]:focus,
+			input[type="email"]:focus,
+			textarea:focus {
+				border-color: rgba(27, 81, 106, 0.65) !important;
+				box-shadow: inset 0 0 0 1px rgba(27, 81, 106, 0.65) !important;
+			}
 		</style>
 	</head>
 	<body class="is-preload">
 
 		<div id="wrapper" class="divided">
 
-			<!-- Video Hero -->
-			<section id="video-hero">
-				<div class="video-frame">
-					<video
-						src="video/deepdiveday.mp4"
-						poster="images/deepdiveday-selfie.jpg"
-						controls
-						playsinline
-						preload="metadata">
-						Dein Browser unterstützt das Videoformat leider nicht.
-					</video>
-				</div>
-			</section>
-
-			<!-- Einleitung -->
-			<section class="wrapper style1 align-center" style="background: transparent !important; background-color: transparent !important;">
-				<div class="inner" style="background: transparent !important; background-color: transparent !important;">
-					<h1>Dein Deep Dive Day</h1>
-					<p style="max-width: 700px; margin: 0 auto 1em;">Du Herz, es gibt Momente, in denen ein Gespräch nicht reicht. In denen du nicht an der Oberfläche kratzen, sondern wirklich eintauchen möchtest – in dich, in das, was gerade wirklich dran ist, in die Tiefe deiner eigenen Wahrheit.</p>
-					<p style="max-width: 700px; margin: 0 auto 1em;">Genau dafür ist der Deep Dive Day gedacht: ein ganzer Tag, nur für dich. Kein Zeitdruck, keine Oberflächlichkeit – Raum für das, was sich sonst im Alltag nicht zeigen darf.</p>
-				</div>
-			</section>
-
-			<!-- Was dich erwartet -->
-			<section class="spotlight style1 orient-right content-align-left image-position-center" style="background: transparent !important; background-color: transparent !important;">
-				<div class="content" style="text-align: justify; background: transparent !important; background-color: transparent !important;">
-					<h2>Was dich an diesem Tag erwartet</h2>
-					<p style="margin-bottom: 0.4em;"><span class="placeholder">Platzhalter – bitte anpassen</span></p>
-					<p style="margin-bottom: 0.4em;">An deinem Deep Dive Day begleite ich dich ganzheitlich – mental, emotional, körperlich und energetisch. Wir schauen gemeinsam dahin, wo es für dich gerade am wichtigsten ist: sei es ein bestimmtes Thema, ein Wendepunkt in deinem Leben, oder einfach der Wunsch, dich selbst wieder klarer zu spüren.</p>
-					<p style="margin-bottom: 0.4em;">Dieser Tag folgt keinem starren Ablaufplan – er folgt dir. Deiner Emotion, deinem Tempo, dem, was sich in diesem Moment zeigen möchte.</p>
-					<p><em>[Hier kannst du konkrete Bausteine ergänzen: z. B. Human Design Reading, Körperarbeit, Journaling-Impulse, gemeinsame Mahlzeit, Ritual zum Abschluss …]</em></p>
-				</div>
-			</section>
-
-			<!-- Für wen -->
-			<section class="spotlight style1 orient-left content-align-left image-position-center" style="background: transparent !important; background-color: transparent !important;">
-				<div class="content" style="text-align: justify; background: transparent !important; background-color: transparent !important;">
-					<h2>Für wen dieser Tag gedacht ist</h2>
-					<p style="margin-bottom: 0.4em;">Für dich, wenn du spürst, dass eine einzelne Sitzung dir gerade nicht reicht. Wenn du bereit bist, dir wirklich Zeit für dich zu nehmen – ungestört, ohne Ablenkung, ohne den nächsten Termin im Nacken.</p>
-					<p>Für dich, wenn du dich nach echter Tiefe sehnst, statt nach schnellen Antworten.</p>
-				</div>
-			</section>
-
-			<!-- Preis & Buchung -->
-			<section class="wrapper style1 align-center" id="buchen" style="background: transparent !important; background-color: transparent !important;">
-				<div class="inner" style="background: transparent !important; background-color: transparent !important;">
-					<h2>Dein Platz für diesen Tag</h2>
-					<div class="info-box">
-						<p style="margin-bottom: 0.3em;">Investition</p>
-						<p class="price">€ <span class="placeholder">Preis eintragen</span></p>
-						<p style="font-size: 0.9rem; opacity: 0.7; margin-top: 0.5em;"><span class="placeholder">Dauer / Ort / Termine eintragen</span></p>
+			<!-- Hero: Video + Überschrift (fliederfarbener Hintergrund) -->
+			<section id="hero" class="wrapper style1 align-center">
+				<div class="inner" style="padding-top: 3rem;">
+					<div class="video-frame">
+						<video
+							src="video/deepdiveday.mp4"
+							poster="images/deepdiveday-selfie.jpg"
+							controls
+							playsinline
+							preload="metadata">
+							Dein Browser unterstützt das Videoformat leider nicht.
+						</video>
 					</div>
-					<p style="max-width: 600px; margin: 0 auto 1em;">Schreib mir eine E-Mail an <a href="mailto:hi@iamworthyofitall.com" style="color:#1b516a !important; border-bottom-color:#1b516a !important;">hi@iamworthyofitall.com</a> und lass uns schauen, ob und wann dein Deep Dive Day stattfinden kann.</p>
-					<a href="mailto:hi@iamworthyofitall.com?subject=Deep%20Dive%20Day" class="cta-button">Jetzt anfragen</a>
+					<h1 style="margin-top: 1.5rem;">1:1 Deep Dive Day</h1>
+					<p style="font-size: 1.2rem; opacity: 0.8; margin: -0.5em 0 1.5em;">– weil Tiefe Zeit braucht</p>
+					<p style="max-width: 600px; margin: 0 auto;">Deine Einladung, dir selbst ehrlich und wertschätzend in der Tiefe zu begegnen - weil dein Selbstwert<span style="text-transform: uppercase;">gefühl</span> die Quelle ist!</p>
+				</div>
+			</section>
+
+			<!-- Haupttext (sandgelber Hintergrund, durchscheinend vom body) -->
+			<section class="wrapper style1 align-center">
+				<div class="inner">
+					<p style="max-width: 600px; margin: 0 auto 0.8em;">Du darfst an diesem Tag mit all dem ankommen und da sein, was dich bewegt:</p>
+					<ul class="dd-list">
+						<li>– Herausforderungen, die sich wieder und wieder zeigen</li>
+						<li>– Gefühle, die dich zurzeit, seit Langem oder gefühlt seitdem du denken kannst, begleiten</li>
+						<li>– Ein Veränderungswunsch, eine Intention</li>
+						<li>– Oder die reine Neugierde, dir selbst näherzukommen</li>
+					</ul>
+
+					<p style="max-width: 600px; margin: 1.5em auto 0.8em;">Und wir blicken tiefer:</p>
+					<ul class="dd-list">
+						<li>🌿 Was möchte integriert werden? Welche Botschaft steckt darin?</li>
+						<li>🌿 Was möchte mehr gelebt werden? Was darf gehen?</li>
+						<li>🌿 Wie fühlt sich das Neue an? Wer bist du darin?</li>
+						<li>🌿 Wie reagieren dein Körper und dein Nervensystem darauf?</li>
+						<li>🌿 Wonach sehnen sich dein Herz und deine Seele wirklich?</li>
+					</ul>
+
+					<h2 style="margin-top: 1.5em;">Auf einen Blick</h2>
+					<ul class="dd-list">
+						<li>– Ganzheitliche 1:1 Begleitung: mental, emotional, körperlich und energetisch</li>
+						<li>– Online via Zoom</li>
+						<li>– 6 Std. Begleitung + 2 ausgedehnte Pausen</li>
+						<li>– Mo-So möglich (in Absprache finden wir deinen passenden Termin)</li>
+						<li>– Deine Investition in dich selbst: 699 €</li>
+					</ul>
+
+					<h2 style="margin-top: 1.5em;">Ablauf des Deep Dive Day</h2>
+					<p style="max-width: 600px; margin: 0 auto 1em;">Wir verbringen 6 Stunden gemeinsam - unterteilt in 3 Einheiten. Dazwischen hast du 2 ausgedehnte Pausen abseits des Bildschirms.</p>
+					<p style="max-width: 600px; margin: 0 auto 1em;">Ich schätze Begleitungen vor Ort sehr. Gleichzeitig weiß ich um den großen Mehrwert in Form eines Gefühls von Sicherheit, wenn du es dir an deinem Wohlfühlort gemütlich machen kannst. Spür mal rein, ob sich das auch für dich stimmig anfühlt.</p>
+					<p style="max-width: 600px; margin: 0 auto 0.8em;">Du wirst:</p>
+					<ul class="dd-list">
+						<li><strong>Ankommen:</strong> in dir, in deinem Körper, in deinem Herzen, in deiner Energie.</li>
+						<li><strong>Ehrlich und liebevoll blicken auf:</strong> deine Gedankenwelt, Gefühle, Blockaden.</li>
+						<li><strong>Raum und Zeit haben, um:</strong> dir zu erlauben, dich bewusst auszurichten und neu zu erleben.</li>
+					</ul>
+
+					<p style="max-width: 600px; margin: 1.5em auto 0.5em;"><strong>Weil du alles an und in dir wert bist!</strong></p>
+					<p style="max-width: 600px; margin: 0 auto 0.5em;">Ich halte den Raum für dich - du darfst dich sicher fühlen.</p>
+					<p style="max-width: 600px; margin: 0 auto;">Ich freue mich auf dich, sehr.</p>
+				</div>
+			</section>
+
+			<!-- Kontakt (rein weißer Hintergrund) -->
+			<section id="kontakt-bereich" class="wrapper style1 align-center">
+				<div class="inner medium" style="padding-bottom: 16px !important;">
+					<h2>Etwas in dir fühlt sich berührt und angesprochen?</h2>
+					<p style="margin-top: 1.5rem !important;">Schreib mir und wir finden gemeinsam heraus, ob du bei mir gut aufgehoben bist.</p>
+					<p style="margin-top: 1rem !important;">Du hast bereits ein Wunschdatum und eine bevorzugte Start-Uhrzeit im Kopf? Lass es mich gerne wissen.</p>
+
+					<form method="post" action="https://api.web3forms.com/submit" id="kontaktform" novalidate style="margin-top: 2.5rem !important;">
+						<input type="hidden" name="access_key" value="c63181c9-d933-462b-9041-36f4e16583ec" />
+						<input type="hidden" name="subject" value="Neue Anfrage Deep Dive Day - I AM worthy of it all" />
+						<input type="hidden" name="from_name" value="Deep Dive Day Kontaktformular" />
+
+						<!-- Honeypot: für Menschen unsichtbar, Bots füllen es aus -->
+						<div style="display:none; position:absolute; left:-9999px;" aria-hidden="true">
+							<label for="website">Website leer lassen</label>
+							<input type="text" name="website" id="website" tabindex="-1" autocomplete="off" />
+						</div>
+
+						<div class="fields">
+							<div class="field half">
+								<label for="vorname">Dein Vorname</label>
+								<input type="text" name="vorname" id="vorname" required autocomplete="given-name" />
+								<p id="error-vorname" style="display:none; color:#1b516a; font-size:0.85rem; line-height:1.6; margin-top:0.3rem; background:#e8a22c; padding:0.4em 0.6em; border-radius:4px;"></p>
+							</div>
+							<div class="field half">
+								<label for="email">Deine E-Mail-Adresse</label>
+								<input type="email" name="email" id="email" required autocomplete="email" />
+								<p id="error-email" style="display:none; color:#1b516a; font-size:0.85rem; line-height:1.6; margin-top:0.3rem; background:#e8a22c; padding:0.4em 0.6em; border-radius:4px;"></p>
+							</div>
+							<div class="field">
+								<label for="message">Deine Nachricht</label>
+								<textarea name="message" id="message" rows="6" required placeholder="Schreibe hier frei von Perfektion ..."></textarea>
+								<p id="error-message" style="display:none; color:#1b516a; font-size:0.85rem; line-height:1.6; margin-top:0.3rem; background:#e8a22c; padding:0.4em 0.6em; border-radius:4px;"></p>
+							</div>
+						</div>
+
+						<!-- Web3Forms Honeypot -->
+						<input type="checkbox" name="botcheck" style="display:none;" />
+
+						<div class="field" id="datenschutz-field" style="margin-top: 1rem !important;">
+							<div style="display:flex; align-items:flex-start; justify-content:center; gap:0.6rem; width:100%;">
+								<div id="datenschutz-box" role="checkbox" aria-checked="false" tabindex="0" style="display:inline-block; width:18px; height:18px; min-width:18px; flex-shrink:0; border:1.5px solid rgba(27, 81, 106, 0.4); border-radius:4px; background-color:transparent; cursor:pointer; position:relative; margin-top:0.1rem;"></div>
+								<input type="hidden" name="datenschutz" id="datenschutz" value="" />
+								<label for="datenschutz-box" style="display:inline; color:#1b516a; opacity:0.5; font-size:0.8rem; font-weight:400; text-align:left; cursor:pointer; margin:0;">Ja, ich habe die <a href="datenschutz.html" target="_blank" style="color:#1b516a !important; opacity:1;">Datenschutzerklärung</a> zur Kenntnis genommen und bin mit der vertraulichen Verarbeitung meiner Daten einverstanden.</label>
+							</div>
+							<p id="error-datenschutz" style="display:none; color:#1b516a; font-size:0.85rem; line-height:1.6; margin-top:0.3rem; background:#e8a22c; padding:0.4em 0.6em; border-radius:4px;"></p>
+						</div>
+
+						<ul class="actions special" style="margin-top: 1rem !important;">
+							<li><input type="submit" id="submit-btn" value="Nachricht an Daniela senden" /></li>
+						</ul>
+
+						<p id="form-success" style="display:none; color:#1b516a; margin-top:1rem; font-size:0.85rem; line-height:1.6; text-align:center; background:#e8a22c; padding:0.6em 1em; border-radius:4px;">Ich freue mich, von dir zu lesen - und antworte dir so schnell wie möglich persönlich.</p>
+					</form>
 				</div>
 			</section>
 
 			<!-- Footer -->
-			<footer class="wrapper style1 align-center" style="background: transparent !important; background-color: transparent !important;">
-				<div class="inner" style="background: transparent !important; background-color: transparent !important;">
+			<footer class="wrapper style1 align-center">
+				<div class="inner">
 					<p>&copy; 2026 Daniela Wolf</p>
 					<p><a href="impressum.html" style="color:#1b516a !important;">Impressum</a> &nbsp;·&nbsp; <a href="datenschutz.html" style="color:#1b516a !important;">Datenschutz</a></p>
 				</div>
@@ -219,6 +362,128 @@
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
+
+		<script>
+		(function() {
+			// Datenschutz-Kästchen: eigenständiges div-Element, komplett von hier gesteuert.
+			(function() {
+				var box = document.getElementById('datenschutz-box');
+				var hiddenField = document.getElementById('datenschutz');
+				if (box && hiddenField) {
+					function toggle() {
+						var isChecked = hiddenField.value === 'ja';
+						hiddenField.value = isChecked ? '' : 'ja';
+						box.classList.toggle('is-checked', !isChecked);
+						box.setAttribute('aria-checked', !isChecked ? 'true' : 'false');
+					}
+					box.addEventListener('click', toggle);
+					box.addEventListener('keydown', function(e) {
+						if (e.key === ' ' || e.key === 'Enter') {
+							e.preventDefault();
+							toggle();
+						}
+					});
+					document.getElementById('datenschutz-field').addEventListener('click', function(e) {
+						if (e.target.id === 'datenschutz-box' || e.target.tagName === 'A') { return; }
+						toggle();
+					});
+				}
+			})();
+
+			document.getElementById('kontaktform').addEventListener('submit', function(e) {
+				e.preventDefault();
+				var errorVorname = document.getElementById('error-vorname');
+				var errorEmail = document.getElementById('error-email');
+				var errorMessage = document.getElementById('error-message');
+				var errorDatenschutz = document.getElementById('error-datenschutz');
+				function clearErrors() {
+					errorVorname.style.display = 'none';
+					errorEmail.style.display = 'none';
+					errorMessage.style.display = 'none';
+					errorDatenschutz.style.display = 'none';
+				}
+				var successEl = document.getElementById('form-success');
+				clearErrors();
+				successEl.style.display = 'none';
+
+				// 1. Honeypot prüfen
+				if (document.getElementById('website').value !== '') {
+					return;
+				}
+
+				// 2. Pflichtfelder prüfen
+				var vorname = document.getElementById('vorname').value.trim();
+				var email = document.getElementById('email').value.trim();
+				var message = document.getElementById('message').value.trim();
+
+				if (vorname === '') {
+					errorVorname.textContent = 'Bitte teile mir deinen Vornamen mit.';
+					errorVorname.style.display = 'block';
+					document.getElementById('vorname').focus();
+					return;
+				}
+
+				if (email === '') {
+					errorEmail.textContent = 'Bitte teile mir deine E-Mail-Adresse mit.';
+					errorEmail.style.display = 'block';
+					document.getElementById('email').focus();
+					return;
+				}
+
+				var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+				if (!emailRegex.test(email)) {
+					errorEmail.innerHTML = 'Die eingegebene E-Mail-Adresse scheint nicht korrekt zu sein.<br>Bitte prüfe sie nochmal (z. B. name@beispiel.de).';
+					errorEmail.style.display = 'block';
+					document.getElementById('email').focus();
+					return;
+				}
+
+				if (message === '') {
+					errorMessage.textContent = 'Bitte erzähle mir kurz von deinem Anliegen.';
+					errorMessage.style.display = 'block';
+					document.getElementById('message').focus();
+					return;
+				}
+
+				if (document.getElementById('datenschutz').value !== 'ja') {
+					errorDatenschutz.textContent = 'Bitte bestätige die Datenschutzerklärung und dass du mit der vertraulichen Verarbeitung deiner Daten einverstanden bist.';
+					errorDatenschutz.style.display = 'block';
+					document.getElementById('datenschutz-box').focus();
+					return;
+				}
+
+				// 3. Absenden
+				var form = this;
+				var submitBtn = document.getElementById('submit-btn');
+				submitBtn.disabled = true;
+				submitBtn.value = 'Wird gesendet …';
+
+				var data = new FormData(form);
+
+				fetch(form.action, {
+					method: 'POST',
+					body: data,
+					headers: { 'Accept': 'application/json' }
+				})
+				.then(function(response) {
+					if (response.ok) {
+						form.reset();
+						successEl.style.display = 'block';
+						submitBtn.disabled = false;
+						submitBtn.value = 'Nachricht an Daniela senden';
+					} else {
+						throw new Error('Fehler');
+					}
+				})
+				.catch(function() {
+					errorVorname.textContent = 'Leider ist ein Fehler aufgetreten. Bitte schreib mir direkt an hi@iamworthyofitall.com.';
+					errorVorname.style.display = 'block';
+					submitBtn.disabled = false;
+					submitBtn.value = 'Nachricht an Daniela senden';
+				});
+			});
+		})();
+		</script>
 
 	</body>
 </html>
