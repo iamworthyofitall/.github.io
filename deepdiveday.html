@@ -55,8 +55,8 @@
 				background: transparent !important;
 			}
 			@media (max-width: 736px) {
-				body {
-					background-attachment: scroll; /* fixed macht auf vielen Mobilgeräten Probleme */
+				html, body {
+					background-attachment: scroll; /* fixed macht auf iOS Safari erhebliche Rendering-Probleme */
 				}
 			}
 			/* Theme setzt bei style1-Sections eine eigene (weiße) Hintergrundfarbe,
