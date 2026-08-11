@@ -167,6 +167,29 @@
 				background: #1b516a;
 				color: #ffffff !important;
 			}
+			.cta-button-filled {
+				display: inline-block !important;
+				margin-top: 1rem;
+				padding: 0.9em 2.4em;
+				border: none !important;
+				border-radius: 999px !important;
+				background-color: rgba(27, 81, 106, 0.4) !important;
+				color: #ffffff !important;
+				text-decoration: none;
+				font-weight: 500;
+				letter-spacing: 0.05em;
+				text-transform: uppercase;
+				transition: all 0.3s ease;
+				box-shadow: none !important;
+			}
+			.cta-button-filled:hover,
+			.cta-button-filled:active,
+			.cta-button-filled:focus {
+				background-color: #1b516a !important;
+				border-color: transparent !important;
+				color: #ffffff !important;
+				box-shadow: none !important;
+			}
 
 			/* Kontaktformular (wie index.html) */
 			#kontaktform .field {
@@ -204,14 +227,14 @@
 				border-width: 0 2px 2px 0;
 				transform: rotate(45deg);
 			}
-			.button, a.button, input[type="submit"], button[type="submit"] {
+			.button:not(.cta-button-filled), a.button:not(.cta-button-filled), input[type="submit"], button[type="submit"] {
 				border-color: rgba(27, 81, 106, 0.4) !important;
 				color: #1b516a !important;
 				background: transparent !important;
 				box-shadow: inset 0 0 0 2px rgba(27, 81, 106, 0.4) !important;
 			}
-			.button:hover, a.button:hover, input[type="submit"]:hover, button[type="submit"]:hover,
-			.button:active, a.button:active, input[type="submit"]:active {
+			.button:not(.cta-button-filled):hover, a.button:not(.cta-button-filled):hover, input[type="submit"]:hover, button[type="submit"]:hover,
+			.button:not(.cta-button-filled):active, a.button:not(.cta-button-filled):active, input[type="submit"]:active {
 				background: #1b516a !important;
 				color: #ffffff !important;
 				border-color: #1b516a !important;
@@ -298,10 +321,10 @@
 					</ul>
 
 					<p style="max-width: 600px; margin: 1.5em auto 0.5em; text-align: left;"><strong style="color:#1b516a !important;">Weil du alles an und in dir wert bist!</strong></p>
-					<p style="max-width: 600px; margin: 0 auto 0.5em; text-align: left;">Ich halte den Raum für dich - du darfst dich sicher fühlen.</p>
+					<p style="max-width: 600px; margin: 1.5em auto 0.5em; text-align: left;">Ich halte den Raum für dich - du darfst dich sicher fühlen.</p>
 					<p style="max-width: 600px; margin: 0 auto; text-align: left;">Ich freue mich auf dich, sehr.</p>
 				</div>
-				<a href="index.html" class="cta-button" style="position: absolute; left: 50%; bottom: 0; transform: translate(-50%, 50%); z-index: 5; white-space: nowrap; margin: 0;">Mehr über meine Arbeit und mich</a>
+				<a href="index.html" class="button cta-button-filled" style="position: absolute; left: 50%; bottom: 0; transform: translate(-50%, 50%); z-index: 5; white-space: nowrap; margin: 0;">Mehr über meine Arbeit und mich</a>
 			</section>
 
 			<!-- Kontakt (rein weißer Hintergrund) -->
