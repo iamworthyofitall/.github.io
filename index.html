@@ -457,69 +457,6 @@
 
 
 
-			<!-- Was mich bewegt -->
-			<section class="wrapper style1 align-center" style="position: relative; overflow: visible; padding-top: 0;">
-				<div class="inner" style="max-width: 700px;">
-					<div id="bewegt-diagram" style="position: relative; width: 100%; max-width: 500px; margin: 0 auto; aspect-ratio: 400 / 230;">
-						<svg viewBox="0 0 400 230" style="width: 100%; height: 100%; display: block; overflow: visible;">
-							<!-- Halbkreis, oben an der Sektionsgrenze gekappt -->
-							<path d="M 50,0 A 150,150 0 0 0 350,0" fill="none" stroke="#1b516a" stroke-width="1.5" opacity="0.35" />
-
-							<!-- Strahlen (je einer, per JS ein-/ausblendbar) -->
-							<line class="bewegt-ray" data-step="1" x1="78.6" y1="88.2" x2="22.0" y2="129.3" stroke="#e8a22c" stroke-width="1.5" stroke-linecap="round" />
-							<line class="bewegt-ray" data-step="2" x1="153.6" y1="142.7" x2="132.0" y2="209.2" stroke="#e8a22c" stroke-width="1.5" stroke-linecap="round" />
-							<line class="bewegt-ray" data-step="3" x1="246.4" y1="142.7" x2="268.0" y2="209.2" stroke="#e8a22c" stroke-width="1.5" stroke-linecap="round" />
-							<line class="bewegt-ray" data-step="4" x1="321.4" y1="88.2" x2="378.0" y2="129.3" stroke="#e8a22c" stroke-width="1.5" stroke-linecap="round" />
-
-							<!-- Punkte auf dem Halbkreis -->
-							<circle class="bewegt-point" data-step="1" cx="78.6" cy="88.2" r="6" fill="#1b516a" />
-							<circle class="bewegt-point" data-step="2" cx="153.6" cy="142.7" r="6" fill="#1b516a" />
-							<circle class="bewegt-point" data-step="3" cx="246.4" cy="142.7" r="6" fill="#1b516a" />
-							<circle class="bewegt-point" data-step="4" cx="321.4" cy="88.2" r="6" fill="#1b516a" />
-						</svg>
-
-						<!-- Icon + Text an jedem Strahlende -->
-						<div class="bewegt-label" data-step="1" style="left: 5.5%; top: 56.2%;">
-							<span class="icon solid style2 major fa-bullseye" style="width: 40px; height: 40px; line-height: 40px; font-size: 1.1rem;"></span>
-							<h3>Selbstverantwortung</h3>
-							<p>… wir umso mehr Frieden im Außen sehen werden, umso mehr jede und jeder Frieden in sich findet.</p>
-						</div>
-						<div class="bewegt-label" data-step="2" style="left: 33%; top: 91%;">
-							<span class="icon solid style2 major fa-tint" style="width: 40px; height: 40px; line-height: 40px; font-size: 1.1rem;"></span>
-							<h3>Mut</h3>
-							<p>… wir Veränderungen im Außen nur dadurch bewirken können, indem wir uns innerlich für Veränderung öffnen.</p>
-						</div>
-						<div class="bewegt-label" data-step="3" style="left: 67%; top: 91%;">
-							<span class="icon solid style2 major fa-infinity" style="width: 40px; height: 40px; line-height: 40px; font-size: 1.1rem;"></span>
-							<h3>Verbundenheit</h3>
-							<p>… wir so viel mehr sind, als unsere fünf Sinne und unser rationaler Verstand uns begreifen lassen.</p>
-						</div>
-						<div class="bewegt-label" data-step="4" style="left: 94.5%; top: 56.2%;">
-							<span class="icon solid style2 major fa-seedling" style="width: 40px; height: 40px; line-height: 40px; font-size: 1.1rem;"></span>
-							<h3>Menschsein</h3>
-							<p>… wir lernen dürfen, all unsere Gefühle da sein zu lassen, sie wahr- und anzunehmen, ihnen zu lauschen und zu vertrauen.</p>
-						</div>
-					</div>
-
-					<h2 style="margin-top: 1rem;">Was mich bewegt</h2>
-					<p style="max-width: 500px; margin: 0.5rem auto 1.5rem;">Ich bin davon überzeugt, dass …</p>
-
-					<!-- Navigation -->
-					<div style="display: flex; align-items: center; justify-content: center; gap: 1.2rem; margin-top: 1rem;">
-						<button type="button" id="bewegt-prev" aria-label="Vorherige Überzeugung" style="background: none; border: none; cursor: pointer; color: #1b516a; opacity: 0.6; font-size: 1.2rem; padding: 0.3rem;">←</button>
-						<div style="display: flex; gap: 0.5rem;">
-							<span class="bewegt-dot" data-step="1"></span>
-							<span class="bewegt-dot" data-step="2"></span>
-							<span class="bewegt-dot" data-step="3"></span>
-							<span class="bewegt-dot" data-step="4"></span>
-						</div>
-						<button type="button" id="bewegt-next" aria-label="Nächste Überzeugung" style="background: none; border: none; cursor: pointer; color: #1b516a; opacity: 0.6; font-size: 1.2rem; padding: 0.3rem;">→</button>
-					</div>
-				</div>
-			</section>
-
-
-
 			<!-- Ablauf & Preis -->
 			<section class="wrapper style1 align-center">
 				<div class="inner" style="max-width: 100%; width: 100%; padding-left: 3rem; padding-right: 3rem;">
