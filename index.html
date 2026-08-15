@@ -91,9 +91,8 @@
 				.wort-desktop { display: none; }
 			}
 			/* Was mich bewegt: nur der aktive Schritt ist sichtbar */
-			.bewegt-ray, .bewegt-label { display: none; }
-			.bewegt-ray.active, .bewegt-label.active { display: block; }
-			line.bewegt-ray.active { display: inline; }
+			.bewegt-ray, foreignObject.bewegt-label { visibility: hidden; opacity: 0; }
+			.bewegt-ray.active, foreignObject.bewegt-label.active { visibility: visible; opacity: 1; }
 			.bewegt-dot.active { opacity: 1 !important; }
 
 			/* Deep Dive Day Teaser: jeder Satz bleibt in einer Zeile, sofern genug Platz ist */
@@ -468,42 +467,52 @@
 				<div class="inner" style="max-width: 700px;">
 					<h2>Was mich bewegt</h2>
 
-					<div id="bewegt-diagram" style="position: relative; width: 100%; max-width: 500px; margin: 2.5rem auto 0; aspect-ratio: 400 / 280;">
-						<svg viewBox="0 0 400 280" style="width: 100%; height: 100%; display: block; overflow: visible;">
+					<div id="bewegt-diagram" style="position: relative; width: 100%; max-width: 600px; margin: 2.5rem auto 0; aspect-ratio: 600 / 280;">
+						<svg viewBox="0 0 600 280" style="width: 100%; height: 100%; display: block; overflow: visible;">
 							<!-- Halbkreis, oben an der Sektionsgrenze gekappt -->
-							<path d="M 50,0 A 150,150 0 0 0 350,0" fill="none" stroke="rgba(232, 162, 44, 0.4)" stroke-width="2" />
+							<path d="M 150,0 A 150,150 0 0 0 450,0" fill="none" stroke="rgba(232, 162, 44, 0.4)" stroke-width="2" />
+
+							<!-- Einleitungssatz mittig im Halbkreis -->
+							<foreignObject x="220" y="50" width="160" height="60">
+								<div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; font-family: 'Quicksand', sans-serif; color: #1b516a; font-size: 15px;">Ich bin davon überzeugt, dass …</div>
+							</foreignObject>
 
 							<!-- Strahlen: immer nur einer sichtbar (per JS gesteuert) -->
-							<line class="bewegt-ray" data-step="1" x1="78.6" y1="88.2" x2="1.8" y2="144.0" stroke="rgba(232, 162, 44, 0.4)" stroke-width="2" stroke-linecap="round" />
-							<line class="bewegt-ray" data-step="2" x1="153.6" y1="142.7" x2="124.3" y2="233.0" stroke="rgba(232, 162, 44, 0.4)" stroke-width="2" stroke-linecap="round" />
-							<line class="bewegt-ray" data-step="3" x1="246.4" y1="142.7" x2="275.7" y2="233.0" stroke="rgba(232, 162, 44, 0.4)" stroke-width="2" stroke-linecap="round" />
-							<line class="bewegt-ray" data-step="4" x1="321.4" y1="88.2" x2="398.2" y2="144.0" stroke="rgba(232, 162, 44, 0.4)" stroke-width="2" stroke-linecap="round" />
+							<line class="bewegt-ray" data-step="1" x1="178.6" y1="88.2" x2="101.8" y2="144.0" stroke="rgba(232, 162, 44, 0.4)" stroke-width="2" stroke-linecap="round" />
+							<line class="bewegt-ray" data-step="2" x1="253.6" y1="142.7" x2="224.3" y2="233.0" stroke="rgba(232, 162, 44, 0.4)" stroke-width="2" stroke-linecap="round" />
+							<line class="bewegt-ray" data-step="3" x1="346.4" y1="142.7" x2="375.7" y2="233.0" stroke="rgba(232, 162, 44, 0.4)" stroke-width="2" stroke-linecap="round" />
+							<line class="bewegt-ray" data-step="4" x1="421.4" y1="88.2" x2="498.2" y2="144.0" stroke="rgba(232, 162, 44, 0.4)" stroke-width="2" stroke-linecap="round" />
+
+							<!-- Icon + Text an jedem Strahlende: immer nur einer sichtbar, direkt im SVG-Koordinatensystem -->
+							<foreignObject class="bewegt-label" data-step="1" x="16.8" y="69" width="170" height="150">
+								<div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; font-family: 'Quicksand', sans-serif;">
+									<span class="icon solid style2 major fa-bullseye" style="width: 40px; height: 40px; line-height: 40px; font-size: 1.1rem; display: inline-block;"></span>
+									<p style="color: #1b516a; font-size: 14px; margin: 0.3em 0;">… wir umso mehr Frieden im Außen sehen werden, umso mehr jede und jeder Frieden in sich findet.</p>
+									<h3 style="color: #1b516a; margin: 0.3em 0 0;">Selbstverantwortung</h3>
+								</div>
+							</foreignObject>
+							<foreignObject class="bewegt-label" data-step="2" x="139.3" y="158" width="170" height="150">
+								<div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; font-family: 'Quicksand', sans-serif;">
+									<span class="icon solid style2 major fa-tint" style="width: 40px; height: 40px; line-height: 40px; font-size: 1.1rem; display: inline-block;"></span>
+									<p style="color: #1b516a; font-size: 14px; margin: 0.3em 0;">… wir Veränderungen im Außen nur dadurch bewirken können, indem wir uns innerlich für Veränderung öffnen.</p>
+									<h3 style="color: #1b516a; margin: 0.3em 0 0;">Mut</h3>
+								</div>
+							</foreignObject>
+							<foreignObject class="bewegt-label" data-step="3" x="290.7" y="158" width="170" height="150">
+								<div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; font-family: 'Quicksand', sans-serif;">
+									<span class="icon solid style2 major fa-infinity" style="width: 40px; height: 40px; line-height: 40px; font-size: 1.1rem; display: inline-block;"></span>
+									<p style="color: #1b516a; font-size: 14px; margin: 0.3em 0;">… wir so viel mehr sind, als unsere fünf Sinne und unser rationaler Verstand uns begreifen lassen.</p>
+									<h3 style="color: #1b516a; margin: 0.3em 0 0;">Verbundenheit</h3>
+								</div>
+							</foreignObject>
+							<foreignObject class="bewegt-label" data-step="4" x="413.2" y="69" width="170" height="150">
+								<div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; font-family: 'Quicksand', sans-serif;">
+									<span class="icon solid style2 major fa-seedling" style="width: 40px; height: 40px; line-height: 40px; font-size: 1.1rem; display: inline-block;"></span>
+									<p style="color: #1b516a; font-size: 14px; margin: 0.3em 0;">… wir lernen dürfen, all unsere Gefühle da sein zu lassen, sie wahr- und anzunehmen, ihnen zu lauschen und zu vertrauen.</p>
+									<h3 style="color: #1b516a; margin: 0.3em 0 0;">Menschsein</h3>
+								</div>
+							</foreignObject>
 						</svg>
-
-						<!-- Einleitungssatz mittig im Halbkreis -->
-						<p style="position: absolute; left: 50%; top: 26%; transform: translate(-50%, -50%); width: 60%; text-align: center; margin: 0; font-size: 0.95rem;">Ich bin davon überzeugt, dass …</p>
-
-						<!-- Icon + Text an jedem Strahlende: immer nur einer sichtbar, zentriert auf dem Strahlende -->
-						<div class="bewegt-label" data-step="1" style="position: absolute; left: 0.4%; top: 51.4%; transform: translate(-50%, -50%); width: 42%; text-align: center;">
-							<span class="icon solid style2 major fa-bullseye" style="width: 40px; height: 40px; line-height: 40px; font-size: 1.1rem;"></span>
-							<p>… wir umso mehr Frieden im Außen sehen werden, umso mehr jede und jeder Frieden in sich findet.</p>
-							<h3>Selbstverantwortung</h3>
-						</div>
-						<div class="bewegt-label" data-step="2" style="position: absolute; left: 31.1%; top: 83.2%; transform: translate(-50%, -50%); width: 42%; text-align: center;">
-							<span class="icon solid style2 major fa-tint" style="width: 40px; height: 40px; line-height: 40px; font-size: 1.1rem;"></span>
-							<p>… wir Veränderungen im Außen nur dadurch bewirken können, indem wir uns innerlich für Veränderung öffnen.</p>
-							<h3>Mut</h3>
-						</div>
-						<div class="bewegt-label" data-step="3" style="position: absolute; left: 68.9%; top: 83.2%; transform: translate(-50%, -50%); width: 42%; text-align: center;">
-							<span class="icon solid style2 major fa-infinity" style="width: 40px; height: 40px; line-height: 40px; font-size: 1.1rem;"></span>
-							<p>… wir so viel mehr sind, als unsere fünf Sinne und unser rationaler Verstand uns begreifen lassen.</p>
-							<h3>Verbundenheit</h3>
-						</div>
-						<div class="bewegt-label" data-step="4" style="position: absolute; left: 99.6%; top: 51.4%; transform: translate(-50%, -50%); width: 42%; text-align: center;">
-							<span class="icon solid style2 major fa-seedling" style="width: 40px; height: 40px; line-height: 40px; font-size: 1.1rem;"></span>
-							<p>… wir lernen dürfen, all unsere Gefühle da sein zu lassen, sie wahr- und anzunehmen, ihnen zu lauschen und zu vertrauen.</p>
-							<h3>Menschsein</h3>
-						</div>
 					</div>
 
 					<!-- Navigation -->
