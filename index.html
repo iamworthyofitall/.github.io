@@ -461,83 +461,45 @@
 
 
 			<!-- Was mich bewegt -->
-			<section class="wrapper style1 align-center" style="position: relative; overflow: hidden; padding-top: 0;">
-				<div class="inner" style="max-width: 1000px;">
+			<section class="wrapper style1 align-center" style="padding-top: 0;">
+				<div class="inner" style="max-width: 640px;">
 					<h2>Was mich bewegt</h2>
+					<p style="opacity: 0.6; margin-top: 0.4rem;">Ich bin davon überzeugt, dass …</p>
 
-					<!-- Punkte: zeigen Gesamtzahl und aktive Slide -->
-					<div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 0.5rem;">
-						<span class="bewegt-dot" data-step="1" style="width: 8px; height: 8px; border-radius: 50%; background: #1b516a; opacity: 0.25; display: inline-block; cursor: pointer;"></span>
-						<span class="bewegt-dot" data-step="2" style="width: 8px; height: 8px; border-radius: 50%; background: #1b516a; opacity: 0.25; display: inline-block; cursor: pointer;"></span>
-						<span class="bewegt-dot" data-step="3" style="width: 8px; height: 8px; border-radius: 50%; background: #1b516a; opacity: 0.25; display: inline-block; cursor: pointer;"></span>
-						<span class="bewegt-dot" data-step="4" style="width: 8px; height: 8px; border-radius: 50%; background: #1b516a; opacity: 0.25; display: inline-block; cursor: pointer;"></span>
+					<div id="bewegt-stage" style="position: relative; margin-top: 2.5rem; min-height: 220px;">
+						<div class="bewegt-slide active" data-step="1" style="position: absolute; top: 0; left: 0; width: 100%; opacity: 1; transition: opacity 0.5s ease;">
+							<p style="font-size: 1.15rem; line-height: 1.75;">… wir umso mehr Frieden im Außen sehen werden, umso mehr jede und jeder Frieden in sich findet.</p>
+							<div style="width: 32px; height: 2px; background: #e8a22c; margin: 1.4rem auto;"></div>
+							<p style="text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem; opacity: 0.65; margin: 0;">Und das bedeutet <strong style="color: #1b516a !important;">Selbstverantwortung</strong></p>
+						</div>
+						<div class="bewegt-slide" data-step="2" style="position: absolute; top: 0; left: 0; width: 100%; opacity: 0; transition: opacity 0.5s ease;">
+							<p style="font-size: 1.15rem; line-height: 1.75;">… wir Veränderungen im Außen nur dadurch bewirken können, indem wir uns innerlich für Veränderung öffnen.</p>
+							<div style="width: 32px; height: 2px; background: #e8a22c; margin: 1.4rem auto;"></div>
+							<p style="text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem; opacity: 0.65; margin: 0;">Und das erfordert <strong style="color: #1b516a !important;">Mut</strong></p>
+						</div>
+						<div class="bewegt-slide" data-step="3" style="position: absolute; top: 0; left: 0; width: 100%; opacity: 0; transition: opacity 0.5s ease;">
+							<p style="font-size: 1.15rem; line-height: 1.75;">… wir so viel mehr sind, als unsere fünf Sinne und unser rationaler Verstand uns begreifen lassen.</p>
+							<div style="width: 32px; height: 2px; background: #e8a22c; margin: 1.4rem auto;"></div>
+							<p style="text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem; opacity: 0.65; margin: 0;">Und das bringt <strong style="color: #1b516a !important;">Verbundenheit</strong></p>
+						</div>
+						<div class="bewegt-slide" data-step="4" style="position: absolute; top: 0; left: 0; width: 100%; opacity: 0; transition: opacity 0.5s ease;">
+							<p style="font-size: 1.15rem; line-height: 1.75;">… wir lernen dürfen, all unsere Gefühle da sein zu lassen, sie wahr- und anzunehmen, ihnen zu lauschen und zu vertrauen.</p>
+							<div style="width: 32px; height: 2px; background: #e8a22c; margin: 1.4rem auto;"></div>
+							<p style="text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem; opacity: 0.65; margin: 0;">Und das ist <strong style="color: #1b516a !important;">Menschsein</strong></p>
+						</div>
+					</div>
+
+					<div style="display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-top: 1.5rem;">
+						<button type="button" id="bewegt-prev" aria-label="Vorherige Überzeugung" style="background: none; border: none; cursor: pointer; color: #1b516a; opacity: 0.4; font-size: 1.1rem; padding: 0.3rem; transition: opacity 0.2s ease;">←</button>
+						<div style="display: flex; gap: 0.5rem;">
+							<span class="bewegt-dot active" data-step="1" style="width: 6px; height: 6px; border-radius: 50%; background: #1b516a; opacity: 1; display: inline-block; cursor: pointer; transition: opacity 0.2s ease;"></span>
+							<span class="bewegt-dot" data-step="2" style="width: 6px; height: 6px; border-radius: 50%; background: #1b516a; opacity: 0.25; display: inline-block; cursor: pointer; transition: opacity 0.2s ease;"></span>
+							<span class="bewegt-dot" data-step="3" style="width: 6px; height: 6px; border-radius: 50%; background: #1b516a; opacity: 0.25; display: inline-block; cursor: pointer; transition: opacity 0.2s ease;"></span>
+							<span class="bewegt-dot" data-step="4" style="width: 6px; height: 6px; border-radius: 50%; background: #1b516a; opacity: 0.25; display: inline-block; cursor: pointer; transition: opacity 0.2s ease;"></span>
+						</div>
+						<button type="button" id="bewegt-next" aria-label="Nächste Überzeugung" style="background: none; border: none; cursor: pointer; color: #1b516a; opacity: 0.4; font-size: 1.1rem; padding: 0.3rem; transition: opacity 0.2s ease;">→</button>
 					</div>
 				</div>
-
-				<!-- Fenster: volle Bildschirmbreite, Kreis+Strahl+Text als eine Einheit pro Slide -->
-				<div id="bewegt-window-frame" style="overflow: hidden; width: 100vw; position: relative; left: 50%; margin-left: -50vw; margin-top: 1.5rem; border-top: 2px solid rgba(232, 162, 44, 0.4); border-bottom: 2px solid rgba(232, 162, 44, 0.4); background: rgba(232, 162, 44, 0.05);">
-					<div id="bewegt-track" style="display: flex; transition: transform 0.45s ease;">
-
-						<div class="bewegt-window" style="flex: 0 0 100%; box-sizing: border-box; padding: 2.5rem 1.5rem; display: flex; flex-direction: column; align-items: center;">
-							<svg viewBox="0 0 300 145" style="width: 100%; max-width: 300px; height: auto; display: block;">
-								<path d="M 63.4,50 A 100,100 0 0 0 236.6,50" fill="none" stroke="rgba(232, 162, 44, 0.6)" stroke-width="2" />
-								<line x1="69.1" y1="58.8" x2="28.6" y2="88.2" stroke="rgba(232, 162, 44, 0.6)" stroke-width="2" stroke-linecap="round" />
-							</svg>
-							<p style="margin: -1rem 0 0;">Ich bin davon überzeugt, dass …</p>
-							<div style="max-width: 400px; text-align: center; margin-top: 1rem;">
-								<p style="margin: 0;">… wir umso mehr Frieden im Außen sehen werden, umso mehr jede und jeder Frieden in sich findet.</p>
-								<h3 style="margin: 0.6em 0 0; font-weight: 400; font-size: 1rem;">Und das bedeutet <strong style="color: #1b516a !important;">Selbstverantwortung</strong>.</h3>
-							</div>
-						</div>
-
-						<div class="bewegt-window" style="flex: 0 0 100%; box-sizing: border-box; padding: 2.5rem 1.5rem; display: flex; flex-direction: column; align-items: center;">
-							<svg viewBox="0 0 300 145" style="width: 100%; max-width: 300px; height: auto; display: block;">
-								<path d="M 63.4,50 A 100,100 0 0 0 236.6,50" fill="none" stroke="rgba(232, 162, 44, 0.6)" stroke-width="2" />
-								<line x1="119.1" y1="95.1" x2="103.6" y2="142.7" stroke="rgba(232, 162, 44, 0.6)" stroke-width="2" stroke-linecap="round" />
-							</svg>
-							<p style="margin: -1rem 0 0;">Ich bin davon überzeugt, dass …</p>
-							<div style="max-width: 400px; text-align: center; margin-top: 1rem;">
-								<p style="margin: 0;">… wir Veränderungen im Außen nur dadurch bewirken können, indem wir uns innerlich für Veränderung öffnen.</p>
-								<h3 style="margin: 0.6em 0 0; font-weight: 400; font-size: 1rem;">Und das erfordert <strong style="color: #1b516a !important;">Mut</strong>.</h3>
-							</div>
-						</div>
-
-						<div class="bewegt-window" style="flex: 0 0 100%; box-sizing: border-box; padding: 2.5rem 1.5rem; display: flex; flex-direction: column; align-items: center;">
-							<svg viewBox="0 0 300 145" style="width: 100%; max-width: 300px; height: auto; display: block;">
-								<path d="M 63.4,50 A 100,100 0 0 0 236.6,50" fill="none" stroke="rgba(232, 162, 44, 0.6)" stroke-width="2" />
-								<line x1="180.9" y1="95.1" x2="196.4" y2="142.7" stroke="rgba(232, 162, 44, 0.6)" stroke-width="2" stroke-linecap="round" />
-							</svg>
-							<p style="margin: -1rem 0 0;">Ich bin davon überzeugt, dass …</p>
-							<div style="max-width: 400px; text-align: center; margin-top: 1rem;">
-								<p style="margin: 0;">… wir so viel mehr sind, als unsere fünf Sinne und unser rationaler Verstand uns begreifen lassen.</p>
-								<h3 style="margin: 0.6em 0 0; font-weight: 400; font-size: 1rem;">Und das bringt <strong style="color: #1b516a !important;">Verbundenheit</strong>.</h3>
-							</div>
-						</div>
-
-						<div class="bewegt-window" style="flex: 0 0 100%; box-sizing: border-box; padding: 2.5rem 1.5rem; display: flex; flex-direction: column; align-items: center;">
-							<svg viewBox="0 0 300 145" style="width: 100%; max-width: 300px; height: auto; display: block;">
-								<path d="M 63.4,50 A 100,100 0 0 0 236.6,50" fill="none" stroke="rgba(232, 162, 44, 0.6)" stroke-width="2" />
-								<line x1="230.9" y1="58.8" x2="271.4" y2="88.2" stroke="rgba(232, 162, 44, 0.6)" stroke-width="2" stroke-linecap="round" />
-							</svg>
-							<p style="margin: -1rem 0 0;">Ich bin davon überzeugt, dass …</p>
-							<div style="max-width: 400px; text-align: center; margin-top: 1rem;">
-								<p style="margin: 0;">… wir lernen dürfen, all unsere Gefühle da sein zu lassen, sie wahr- und anzunehmen, ihnen zu lauschen und zu vertrauen.</p>
-								<h3 style="margin: 0.6em 0 0; font-weight: 400; font-size: 1rem;">Und das ist <strong style="color: #1b516a !important;">Menschsein</strong>.</h3>
-							</div>
-						</div>
-
-					</div>
-				</div>
-
-				<div class="inner" style="max-width: 1000px;">
-					<div style="display: flex; align-items: center; justify-content: center; gap: 0.8rem; margin-top: 1rem;">
-						<button type="button" id="bewegt-prev" aria-label="Vorherige Überzeugung" style="background: none; border: none; cursor: pointer; color: #1b516a; opacity: 0.6; font-size: 1.2rem; padding: 0.3rem; flex-shrink: 0;">←</button>
-						<button type="button" id="bewegt-next" aria-label="Nächste Überzeugung" style="background: none; border: none; cursor: pointer; color: #1b516a; opacity: 0.6; font-size: 1.2rem; padding: 0.3rem; flex-shrink: 0;">→</button>
-					</div>
-				</div>
-			</section>
-
-
 			</section>
 
 
@@ -830,16 +792,20 @@
 			var total = 4;
 			var current = 1;
 			var dots = document.querySelectorAll('.bewegt-dot');
-			var track = document.getElementById('bewegt-track');
+			var slides = document.querySelectorAll('.bewegt-slide');
 
 			function showStep(step) {
 				current = step;
 				dots.forEach(function(el) {
 					el.classList.toggle('active', el.getAttribute('data-step') === String(step));
+					el.style.opacity = (el.getAttribute('data-step') === String(step)) ? '1' : '0.25';
 				});
-				if (track) {
-					track.style.transform = 'translateX(-' + (step - 1) * 100 + '%)';
-				}
+				slides.forEach(function(el) {
+					var isActive = el.getAttribute('data-step') === String(step);
+					el.classList.toggle('active', isActive);
+					el.style.opacity = isActive ? '1' : '0';
+					el.style.pointerEvents = isActive ? 'auto' : 'none';
+				});
 			}
 
 			var prevBtn = document.getElementById('bewegt-prev');
