@@ -90,6 +90,12 @@
 				.wort-mobil { display: inline; }
 				.wort-desktop { display: none; }
 			}
+			/* Was mich bewegt: nur der aktive Schritt ist sichtbar */
+			.bewegt-ray, .bewegt-label { display: none; }
+			.bewegt-ray.active, .bewegt-label.active { display: block; }
+			line.bewegt-ray.active { display: inline; }
+			.bewegt-dot.active { opacity: 1 !important; }
+
 			/* Deep Dive Day Teaser: jeder Satz bleibt in einer Zeile, sofern genug Platz ist */
 			.teaser-line {
 				white-space: nowrap;
@@ -411,12 +417,12 @@
 			<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in">
 				<div class="content" style="text-align: justify;">
 					<h2>Ganzheitlich &amp; intuitiv</h2>
-					<p style="margin-bottom:0 !important;">Ich begleite dich <strong>ganzheitlich - weil du Körper, Geist und Seele bist.</strong> In unserer Begegnung nehmen wir deshalb dein gesamtes System mit, weil es untrennbar miteinander verbunden ist:</p>
+					<p style="margin-bottom:0 !important;">Ich begleite dich <strong>ganzheitlich - weil du Körper, Geist und Seele bist.</strong> In unserer Begegnung nehmen wir dein gesamtes System mit, da es untrennbar miteinander verbunden ist:</p>
 					<ul style="margin-top:0 !important; padding-top:0 !important; margin-bottom:10px !important; list-style: none; padding-left: 0; margin-left: 0;">
-						<li style="display: flex; align-items: center; gap: 0.5em;"><i class="fas fa-heart" style="color: #1b516a; font-size: 0.55em; flex-shrink: 0;"></i><span>deinen Körper und dein Nervensystem</span></li>
-						<li style="display: flex; align-items: center; gap: 0.5em;"><i class="fas fa-heart" style="color: #1b516a; font-size: 0.55em; flex-shrink: 0;"></i><span>deine mentalen Strukturen</span></li>
-						<li style="display: flex; align-items: center; gap: 0.5em;"><i class="fas fa-heart" style="color: #1b516a; font-size: 0.55em; flex-shrink: 0;"></i><span>deine Gefühle und Emotionen</span></li>
-						<li style="display: flex; align-items: center; gap: 0.5em;"><i class="fas fa-heart" style="color: #1b516a; font-size: 0.55em; flex-shrink: 0;"></i><span>dein Energiesystem</span></li>
+						<li style="display: flex; align-items: center; gap: 0.2em;"><span style="color: #1b516a; flex-shrink: 0; width: 1.3em; text-align: left;">✦</span><span>deinen Körper und dein Nervensystem</span></li>
+						<li style="display: flex; align-items: center; gap: 0.2em;"><span style="color: #1b516a; flex-shrink: 0; width: 1.3em; text-align: left;">✦</span><span>deine mentalen Strukturen</span></li>
+						<li style="display: flex; align-items: center; gap: 0.2em;"><span style="color: #1b516a; flex-shrink: 0; width: 1.3em; text-align: left;">✦</span><span>deine Gefühle und Emotionen</span></li>
+						<li style="display: flex; align-items: center; gap: 0.2em;"><span style="color: #1b516a; flex-shrink: 0; width: 1.3em; text-align: left;">✦</span><span>dein Energiesystem</span></li>
 					</ul>
 					<div style="height:10px;"></div>
 					<p>Was sich dem Verstand oft entzieht, spricht die Seele umso mehr an. Die Arbeit auf energetischer Ebene wirkt tief - und die Veränderungen, die daraus entstehen, können deutlich wahrnehmbar sein.</p>
@@ -452,6 +458,65 @@
 						<source media="(max-width: 736px)" srcset="images/foto-ueber-mich-mobil.jpg" />
 						<img src="images/foto-ueber-mich.jpg" alt="" />
 					</picture>
+				</div>
+			</section>
+
+
+
+			<!-- Was mich bewegt -->
+			<section class="wrapper style1 align-center" style="position: relative; overflow: visible; padding-top: 0;">
+				<div class="inner" style="max-width: 700px;">
+					<h2>Was mich bewegt</h2>
+
+					<div id="bewegt-diagram" style="position: relative; width: 100%; max-width: 500px; margin: 1.5rem auto 0; aspect-ratio: 400 / 230;">
+						<svg viewBox="0 0 400 230" style="width: 100%; height: 100%; display: block; overflow: visible;">
+							<!-- Halbkreis, oben an der Sektionsgrenze gekappt -->
+							<path d="M 50,0 A 150,150 0 0 0 350,0" fill="none" stroke="#e8a22c" stroke-width="1.5" opacity="0.5" />
+
+							<!-- Strahlen: immer nur einer sichtbar (per JS gesteuert) -->
+							<line class="bewegt-ray" data-step="1" x1="78.6" y1="88.2" x2="22.0" y2="129.3" stroke="#e8a22c" stroke-width="1.5" stroke-linecap="round" />
+							<line class="bewegt-ray" data-step="2" x1="153.6" y1="142.7" x2="132.0" y2="209.2" stroke="#e8a22c" stroke-width="1.5" stroke-linecap="round" />
+							<line class="bewegt-ray" data-step="3" x1="246.4" y1="142.7" x2="268.0" y2="209.2" stroke="#e8a22c" stroke-width="1.5" stroke-linecap="round" />
+							<line class="bewegt-ray" data-step="4" x1="321.4" y1="88.2" x2="378.0" y2="129.3" stroke="#e8a22c" stroke-width="1.5" stroke-linecap="round" />
+						</svg>
+
+						<!-- Einleitungssatz mittig im Halbkreis -->
+						<p style="position: absolute; left: 50%; top: 32%; transform: translate(-50%, -50%); width: 70%; text-align: center; margin: 0; font-size: 0.95rem;">Ich bin davon überzeugt, dass …</p>
+
+						<!-- Icon + Text an jedem Strahlende: immer nur einer sichtbar -->
+						<div class="bewegt-label" data-step="1" style="position: absolute; left: 5.5%; top: 56.2%; transform: translateY(-100%); width: 45%; text-align: center;">
+							<span class="icon solid style2 major fa-bullseye" style="width: 40px; height: 40px; line-height: 40px; font-size: 1.1rem;"></span>
+							<h3>Selbstverantwortung</h3>
+							<p>… wir umso mehr Frieden im Außen sehen werden, umso mehr jede und jeder Frieden in sich findet.</p>
+						</div>
+						<div class="bewegt-label" data-step="2" style="position: absolute; left: 33%; top: 91%; transform: translateX(-30%); width: 45%; text-align: center;">
+							<span class="icon solid style2 major fa-tint" style="width: 40px; height: 40px; line-height: 40px; font-size: 1.1rem;"></span>
+							<h3>Mut</h3>
+							<p>… wir Veränderungen im Außen nur dadurch bewirken können, indem wir uns innerlich für Veränderung öffnen.</p>
+						</div>
+						<div class="bewegt-label" data-step="3" style="position: absolute; left: 67%; top: 91%; transform: translateX(-70%); width: 45%; text-align: center;">
+							<span class="icon solid style2 major fa-infinity" style="width: 40px; height: 40px; line-height: 40px; font-size: 1.1rem;"></span>
+							<h3>Verbundenheit</h3>
+							<p>… wir so viel mehr sind, als unsere fünf Sinne und unser rationaler Verstand uns begreifen lassen.</p>
+						</div>
+						<div class="bewegt-label" data-step="4" style="position: absolute; left: 94.5%; top: 56.2%; transform: translate(-100%, -100%); width: 45%; text-align: center;">
+							<span class="icon solid style2 major fa-seedling" style="width: 40px; height: 40px; line-height: 40px; font-size: 1.1rem;"></span>
+							<h3>Menschsein</h3>
+							<p>… wir lernen dürfen, all unsere Gefühle da sein zu lassen, sie wahr- und anzunehmen, ihnen zu lauschen und zu vertrauen.</p>
+						</div>
+					</div>
+
+					<!-- Navigation -->
+					<div style="display: flex; align-items: center; justify-content: center; gap: 1.2rem; margin-top: 2rem;">
+						<button type="button" id="bewegt-prev" aria-label="Vorherige Überzeugung" style="background: none; border: none; cursor: pointer; color: #1b516a; opacity: 0.6; font-size: 1.2rem; padding: 0.3rem;">←</button>
+						<div style="display: flex; gap: 0.5rem;">
+							<span class="bewegt-dot" data-step="1" style="width: 8px; height: 8px; border-radius: 50%; background: #1b516a; opacity: 0.25; display: inline-block; cursor: pointer;"></span>
+							<span class="bewegt-dot" data-step="2" style="width: 8px; height: 8px; border-radius: 50%; background: #1b516a; opacity: 0.25; display: inline-block; cursor: pointer;"></span>
+							<span class="bewegt-dot" data-step="3" style="width: 8px; height: 8px; border-radius: 50%; background: #1b516a; opacity: 0.25; display: inline-block; cursor: pointer;"></span>
+							<span class="bewegt-dot" data-step="4" style="width: 8px; height: 8px; border-radius: 50%; background: #1b516a; opacity: 0.25; display: inline-block; cursor: pointer;"></span>
+						</div>
+						<button type="button" id="bewegt-next" aria-label="Nächste Überzeugung" style="background: none; border: none; cursor: pointer; color: #1b516a; opacity: 0.6; font-size: 1.2rem; padding: 0.3rem;">→</button>
+					</div>
 				</div>
 			</section>
 
@@ -738,6 +803,52 @@
 					submitBtn.value = 'Nachricht an Daniela senden';
 				});
 			});
+		})();
+
+		// Was mich bewegt: Klick-Navigation zwischen den 4 Überzeugungen
+		(function() {
+			var total = 4;
+			var current = 1;
+			var rays = document.querySelectorAll('.bewegt-ray');
+			var labels = document.querySelectorAll('.bewegt-label');
+			var dots = document.querySelectorAll('.bewegt-dot');
+
+			function showStep(step) {
+				current = step;
+				rays.forEach(function(el) {
+					el.classList.toggle('active', el.getAttribute('data-step') === String(step));
+				});
+				labels.forEach(function(el) {
+					el.classList.toggle('active', el.getAttribute('data-step') === String(step));
+				});
+				dots.forEach(function(el) {
+					el.classList.toggle('active', el.getAttribute('data-step') === String(step));
+				});
+			}
+
+			var prevBtn = document.getElementById('bewegt-prev');
+			var nextBtn = document.getElementById('bewegt-next');
+
+			if (prevBtn && nextBtn) {
+				prevBtn.addEventListener('click', function() {
+					var next = current - 1;
+					if (next < 1) { next = total; }
+					showStep(next);
+				});
+				nextBtn.addEventListener('click', function() {
+					var next = current + 1;
+					if (next > total) { next = 1; }
+					showStep(next);
+				});
+			}
+
+			dots.forEach(function(dot) {
+				dot.addEventListener('click', function() {
+					showStep(parseInt(dot.getAttribute('data-step'), 10));
+				});
+			});
+
+			showStep(1);
 		})();
 		</script>
 
