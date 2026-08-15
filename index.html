@@ -91,8 +91,8 @@
 				.wort-desktop { display: none; }
 			}
 			/* Was mich bewegt: nur der aktive Schritt ist sichtbar */
-			.bewegt-ray, foreignObject.bewegt-label { visibility: hidden; opacity: 0; }
-			.bewegt-ray.active, foreignObject.bewegt-label.active { visibility: visible; opacity: 1; }
+			.bewegt-ray, .bewegt-label { visibility: hidden; opacity: 0; }
+			.bewegt-ray.active, .bewegt-label.active { visibility: visible; opacity: 1; }
 			.bewegt-dot.active { opacity: 1 !important; }
 
 			/* Deep Dive Day Teaser: jeder Satz bleibt in einer Zeile, sofern genug Platz ist */
@@ -464,67 +464,52 @@
 
 			<!-- Was mich bewegt -->
 			<section class="wrapper style1 align-center" style="position: relative; overflow: visible; padding-top: 0;">
-				<div class="inner" style="max-width: 700px;">
+				<div class="inner" style="max-width: 1000px;">
 					<h2>Was mich bewegt</h2>
 
 					<div style="display: flex; align-items: center; justify-content: center; gap: 0.8rem; margin-top: 2.5rem;">
 						<button type="button" id="bewegt-prev" aria-label="Vorherige Überzeugung" style="background: none; border: none; cursor: pointer; color: #1b516a; opacity: 0.6; font-size: 1.2rem; padding: 0.3rem; flex-shrink: 0;">←</button>
 
-						<div id="bewegt-diagram" style="position: relative; width: 100%; max-width: 600px; margin: 0; aspect-ratio: 600 / 420;">
-							<svg viewBox="0 0 600 420" style="width: 100%; height: 100%; display: block; overflow: visible;">
+						<div id="bewegt-diagram" style="position: relative; width: 100%; max-width: 900px; margin: 0; aspect-ratio: 680 / 460;">
+							<svg id="bewegt-svg" viewBox="0 0 680 460" style="width: 100%; height: 100%; display: block; overflow: visible;">
 								<!-- Halbkreis, oben an der Sektionsgrenze gekappt -->
-								<path d="M 170.1,75 A 150,150 0 0 0 429.9,75" fill="none" stroke="rgba(232, 162, 44, 0.4)" stroke-width="2" />
-
-								<!-- Einleitungssatz mittig im Halbkreis -->
-								<foreignObject x="220" y="50" width="160" height="60">
-									<div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; font-family: 'Quicksand', sans-serif; color: #1b516a; font-size: 1rem;">Ich bin davon überzeugt, dass …</div>
-								</foreignObject>
+								<path d="M 139.1,116 A 232,232 0 0 0 540.9,116" fill="none" stroke="rgba(232, 162, 44, 0.4)" stroke-width="2" />
 
 								<!-- Strahlen: immer nur einer sichtbar (per JS gesteuert) -->
-								<line class="bewegt-ray" data-step="1" x1="178.6" y1="88.2" x2="101.8" y2="144.0" stroke="rgba(232, 162, 44, 0.4)" stroke-width="2" stroke-linecap="round" />
-								<line class="bewegt-ray" data-step="2" x1="253.6" y1="142.7" x2="224.3" y2="233.0" stroke="rgba(232, 162, 44, 0.4)" stroke-width="2" stroke-linecap="round" />
-								<line class="bewegt-ray" data-step="3" x1="346.4" y1="142.7" x2="375.7" y2="233.0" stroke="rgba(232, 162, 44, 0.4)" stroke-width="2" stroke-linecap="round" />
-								<line class="bewegt-ray" data-step="4" x1="421.4" y1="88.2" x2="498.2" y2="144.0" stroke="rgba(232, 162, 44, 0.4)" stroke-width="2" stroke-linecap="round" />
-
-								<!-- Text + darunter Icon+Schlagwort als Paar: immer nur einer sichtbar, mit echtem Abstand zum Strahlende -->
-								<foreignObject class="bewegt-label" data-step="1" x="6.8" y="154" width="190" height="160">
-									<div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; font-family: 'Quicksand', sans-serif;">
-										<p style="color: #1b516a; font-size: 1rem; margin: 0;">… wir umso mehr Frieden im Außen sehen werden, umso mehr jede und jeder Frieden in sich findet.</p>
-										<div style="display: flex; align-items: center; justify-content: center; gap: 0.4em; margin-top: 0.6em;">
-											
-											<h3 style="color: #1b516a; margin: 0; font-size: 1rem; font-weight: 400;">Und das bedeutet <strong style="color: #1b516a !important;">Selbstverantwortung</strong>.</h3>
-										</div>
-									</div>
-								</foreignObject>
-								<foreignObject class="bewegt-label" data-step="2" x="129.3" y="243" width="190" height="160">
-									<div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; font-family: 'Quicksand', sans-serif;">
-										<p style="color: #1b516a; font-size: 1rem; margin: 0;">… wir Veränderungen im Außen nur dadurch bewirken können, indem wir uns innerlich für Veränderung öffnen.</p>
-										<div style="display: flex; align-items: center; justify-content: center; gap: 0.4em; margin-top: 0.6em;">
-											
-											<h3 style="color: #1b516a; margin: 0; font-size: 1rem; font-weight: 400;">Und das erfordert <strong style="color: #1b516a !important;">Mut</strong>.</h3>
-										</div>
-									</div>
-								</foreignObject>
-								<foreignObject class="bewegt-label" data-step="3" x="280.7" y="243" width="190" height="160">
-									<div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; font-family: 'Quicksand', sans-serif;">
-										<p style="color: #1b516a; font-size: 1rem; margin: 0;">… wir so viel mehr sind, als unsere fünf Sinne und unser rationaler Verstand uns begreifen lassen.</p>
-										<div style="display: flex; align-items: center; justify-content: center; gap: 0.4em; margin-top: 0.6em;">
-											
-											<h3 style="color: #1b516a; margin: 0; font-size: 1rem; font-weight: 400;">Und das bringt <strong style="color: #1b516a !important;">Verbundenheit</strong>.</h3>
-										</div>
-									</div>
-								</foreignObject>
-								<foreignObject class="bewegt-label" data-step="4" x="403.2" y="154" width="190" height="160">
-									<div xmlns="http://www.w3.org/1999/xhtml" style="text-align: center; font-family: 'Quicksand', sans-serif;">
-										<p style="color: #1b516a; font-size: 1rem; margin: 0;">… wir lernen dürfen, all unsere Gefühle da sein zu lassen, sie wahr- und anzunehmen, ihnen zu lauschen und zu vertrauen.</p>
-										<div style="display: flex; align-items: center; justify-content: center; gap: 0.4em; margin-top: 0.6em;">
-											
-											<h3 style="color: #1b516a; margin: 0; font-size: 1rem; font-weight: 400;">Und das ist <strong style="color: #1b516a !important;">Menschsein</strong>.</h3>
-										</div>
-									</div>
-								</foreignObject>
+								<line class="bewegt-ray" data-step="1" x1="152.3" y1="136.4" x2="33.4" y2="222.8" stroke="rgba(232, 162, 44, 0.4)" stroke-width="2" stroke-linecap="round" />
+								<line class="bewegt-ray" data-step="2" x1="268.3" y1="220.6" x2="222.9" y2="360.5" stroke="rgba(232, 162, 44, 0.4)" stroke-width="2" stroke-linecap="round" />
+								<line class="bewegt-ray" data-step="3" x1="411.7" y1="220.6" x2="457.1" y2="360.5" stroke="rgba(232, 162, 44, 0.4)" stroke-width="2" stroke-linecap="round" />
+								<line class="bewegt-ray" data-step="4" x1="527.7" y1="136.4" x2="646.6" y2="222.8" stroke="rgba(232, 162, 44, 0.4)" stroke-width="2" stroke-linecap="round" />
 							</svg>
+
+							<!-- Einleitungssatz, per JS exakt mittig im Halbkreis positioniert -->
+							<p id="bewegt-intro" style="position: absolute; margin: 0; text-align: center; white-space: nowrap;">Ich bin davon überzeugt, dass …</p>
+
+							<!-- Text + Schlagwort: immer nur einer sichtbar, per JS exakt ans Strahlende positioniert -->
+							<div class="bewegt-label" data-step="1" style="position: absolute; text-align: center; width: 240px;">
+								<p style="margin: 0;">… wir umso mehr Frieden im Außen sehen werden, umso mehr jede und jeder Frieden in sich findet.</p>
+								<h3 style="margin: 0.6em 0 0; font-weight: 400; font-size: 1rem;">Und das bedeutet <strong style="color: #1b516a !important;">Selbstverantwortung</strong>.</h3>
+							</div>
+							<div class="bewegt-label" data-step="2" style="position: absolute; text-align: center; width: 240px;">
+								<p style="margin: 0;">… wir Veränderungen im Außen nur dadurch bewirken können, indem wir uns innerlich für Veränderung öffnen.</p>
+								<h3 style="margin: 0.6em 0 0; font-weight: 400; font-size: 1rem;">Und das erfordert <strong style="color: #1b516a !important;">Mut</strong>.</h3>
+							</div>
+							<div class="bewegt-label" data-step="3" style="position: absolute; text-align: center; width: 240px;">
+								<p style="margin: 0;">… wir so viel mehr sind, als unsere fünf Sinne und unser rationaler Verstand uns begreifen lassen.</p>
+								<h3 style="margin: 0.6em 0 0; font-weight: 400; font-size: 1rem;">Und das bringt <strong style="color: #1b516a !important;">Verbundenheit</strong>.</h3>
+							</div>
+							<div class="bewegt-label" data-step="4" style="position: absolute; text-align: center; width: 240px;">
+								<p style="margin: 0;">… wir lernen dürfen, all unsere Gefühle da sein zu lassen, sie wahr- und anzunehmen, ihnen zu lauschen und zu vertrauen.</p>
+								<h3 style="margin: 0.6em 0 0; font-weight: 400; font-size: 1rem;">Und das ist <strong style="color: #1b516a !important;">Menschsein</strong>.</h3>
+							</div>
 						</div>
+
+						<!-- Mobile: Einleitungssatz darf umbrechen, da der Kreis dort kleiner dargestellt wird -->
+						<style>
+							@media screen and (max-width: 736px) {
+								#bewegt-intro { white-space: normal !important; width: 200px; }
+							}
+						</style>
 
 						<button type="button" id="bewegt-next" aria-label="Nächste Überzeugung" style="background: none; border: none; cursor: pointer; color: #1b516a; opacity: 0.6; font-size: 1.2rem; padding: 0.3rem; flex-shrink: 0;">→</button>
 					</div>
@@ -868,6 +853,51 @@
 			});
 
 			showStep(1);
+
+			// Exakte Positionierung: Text-Divs werden anhand der tatsächlich
+			// gerenderten SVG-Größe berechnet (kein Skalierungs-Versatz mehr möglich)
+			var svg = document.getElementById('bewegt-svg');
+			var diagram = document.getElementById('bewegt-diagram');
+			var intro = document.getElementById('bewegt-intro');
+			var rayPoints = {
+				'1': [33.4, 222.8],
+				'2': [222.9, 360.5],
+				'3': [457.1, 360.5],
+				'4': [646.6, 222.8]
+			};
+			var VB_W = 680, VB_H = 460;
+			var GAP = 15; // Abstand (in SVG-Einheiten) zwischen Strahlende und Text
+
+			function positionBewegtElements() {
+				if (!svg || !diagram) { return; }
+				var rect = svg.getBoundingClientRect();
+				if (rect.width === 0) { return; }
+				var scaleX = rect.width / VB_W;
+				var scaleY = rect.height / VB_H;
+
+				if (intro) {
+					var ix = 340 * scaleX;
+					var iy = 116 * scaleY;
+					intro.style.left = ix + 'px';
+					intro.style.top = iy + 'px';
+					intro.style.transform = 'translate(-50%, -50%)';
+				}
+
+				labels.forEach(function(el) {
+					var step = el.getAttribute('data-step');
+					var point = rayPoints[step];
+					if (!point) { return; }
+					var px = point[0] * scaleX;
+					var py = (point[1] + GAP) * scaleY;
+					el.style.left = px + 'px';
+					el.style.top = py + 'px';
+					el.style.transform = 'translateX(-50%)';
+				});
+			}
+
+			positionBewegtElements();
+			window.addEventListener('resize', positionBewegtElements);
+			window.addEventListener('load', positionBewegtElements);
 		})();
 		</script>
 
