@@ -90,9 +90,7 @@
 				.wort-mobil { display: inline; }
 				.wort-desktop { display: none; }
 			}
-			/* Was mich bewegt: nur der aktive Schritt ist sichtbar */
-			.bewegt-ray { visibility: hidden; opacity: 0; }
-			.bewegt-ray.active { visibility: visible; opacity: 1; }
+			/* Was mich bewegt */
 			.bewegt-dot.active { opacity: 1 !important; }
 
 			/* Deep Dive Day Teaser: jeder Satz bleibt in einer Zeile, sofern genug Platz ist */
@@ -463,7 +461,7 @@
 
 
 			<!-- Was mich bewegt -->
-			<section class="wrapper style1 align-center" style="position: relative; overflow: visible; padding-top: 0;">
+			<section class="wrapper style1 align-center" style="position: relative; overflow: hidden; padding-top: 0;">
 				<div class="inner" style="max-width: 1000px;">
 					<h2>Was mich bewegt</h2>
 
@@ -474,58 +472,72 @@
 						<span class="bewegt-dot" data-step="3" style="width: 8px; height: 8px; border-radius: 50%; background: #1b516a; opacity: 0.25; display: inline-block; cursor: pointer;"></span>
 						<span class="bewegt-dot" data-step="4" style="width: 8px; height: 8px; border-radius: 50%; background: #1b516a; opacity: 0.25; display: inline-block; cursor: pointer;"></span>
 					</div>
+				</div>
 
-					<div style="display: flex; align-items: center; justify-content: center; gap: 0.8rem; margin-top: 0.3rem;">
-						<button type="button" id="bewegt-prev" aria-label="Vorherige Überzeugung" style="background: none; border: none; cursor: pointer; color: #1b516a; opacity: 0.6; font-size: 1.2rem; padding: 0.3rem; flex-shrink: 0;">←</button>
+				<!-- Fenster: volle Bildschirmbreite, Kreis+Strahl+Text als eine Einheit pro Slide -->
+				<div id="bewegt-window-frame" style="overflow: hidden; width: 100vw; position: relative; left: 50%; margin-left: -50vw; margin-top: 1.5rem; border-top: 2px solid rgba(232, 162, 44, 0.4); border-bottom: 2px solid rgba(232, 162, 44, 0.4); background: rgba(232, 162, 44, 0.05);">
+					<div id="bewegt-track" style="display: flex; transition: transform 0.45s ease;">
 
-						<div id="bewegt-diagram" style="position: relative; width: 100%; max-width: 900px; margin: 0; aspect-ratio: 680 / 300;">
-							<svg id="bewegt-svg" viewBox="0 0 680 300" style="width: 100%; height: 100%; display: block; overflow: visible;">
-								<!-- Halbkreis, oben an der Sektionsgrenze gekappt -->
-								<path d="M 139.1,116 A 232,232 0 0 0 540.9,116" fill="none" stroke="rgba(232, 162, 44, 0.4)" stroke-width="2" />
-
-								<!-- Strahlen: immer nur einer sichtbar/hervorgehoben (per JS gesteuert) -->
-								<line class="bewegt-ray" data-step="1" x1="152.3" y1="136.4" x2="92.4" y2="179.9" stroke="rgba(232, 162, 44, 0.4)" stroke-width="2" stroke-linecap="round" />
-								<line class="bewegt-ray" data-step="2" x1="268.3" y1="220.6" x2="245.4" y2="291.0" stroke="rgba(232, 162, 44, 0.4)" stroke-width="2" stroke-linecap="round" />
-								<line class="bewegt-ray" data-step="3" x1="411.7" y1="220.6" x2="434.6" y2="291.0" stroke="rgba(232, 162, 44, 0.4)" stroke-width="2" stroke-linecap="round" />
-								<line class="bewegt-ray" data-step="4" x1="527.7" y1="136.4" x2="587.6" y2="179.9" stroke="rgba(232, 162, 44, 0.4)" stroke-width="2" stroke-linecap="round" />
+						<div class="bewegt-window" style="flex: 0 0 100%; box-sizing: border-box; padding: 2.5rem 1.5rem; display: flex; flex-direction: column; align-items: center;">
+							<svg viewBox="0 0 300 145" style="width: 100%; max-width: 300px; height: auto; display: block;">
+								<path d="M 63.4,50 A 100,100 0 0 0 236.6,50" fill="none" stroke="rgba(232, 162, 44, 0.6)" stroke-width="2" />
+								<line x1="69.1" y1="58.8" x2="28.6" y2="88.2" stroke="rgba(232, 162, 44, 0.6)" stroke-width="2" stroke-linecap="round" />
 							</svg>
-
-							<!-- Einleitungssatz, per JS exakt mittig im Halbkreis positioniert -->
-							<p id="bewegt-intro" style="position: absolute; margin: 0; text-align: center; white-space: nowrap;">Ich bin davon überzeugt, dass …</p>
-						</div>
-
-						<!-- Mobile: Einleitungssatz darf umbrechen, da der Kreis dort kleiner dargestellt wird -->
-						<style>
-							@media screen and (max-width: 736px) {
-								#bewegt-intro { white-space: normal !important; width: 200px; }
-							}
-						</style>
-
-						<button type="button" id="bewegt-next" aria-label="Nächste Überzeugung" style="background: none; border: none; cursor: pointer; color: #1b516a; opacity: 0.6; font-size: 1.2rem; padding: 0.3rem; flex-shrink: 0;">→</button>
-					</div>
-
-					<!-- Fenster-Karussell: eine feste "Fensteröffnung", Inhalte schieben sich hindurch -->
-					<div id="bewegt-window-frame" style="overflow: hidden; width: 100%; max-width: 420px; margin: 1.5rem auto 0; border: 2px solid rgba(232, 162, 44, 0.4); border-radius: 14px; box-shadow: 0 4px 16px rgba(27, 81, 106, 0.08);">
-						<div id="bewegt-track" style="display: flex; transition: transform 0.45s ease;">
-							<div class="bewegt-window" style="flex: 0 0 100%; box-sizing: border-box; padding: 1.5rem 1.8rem; text-align: center;">
+							<p style="margin: -1rem 0 0;">Ich bin davon überzeugt, dass …</p>
+							<div style="max-width: 400px; text-align: center; margin-top: 1rem;">
 								<p style="margin: 0;">… wir umso mehr Frieden im Außen sehen werden, umso mehr jede und jeder Frieden in sich findet.</p>
 								<h3 style="margin: 0.6em 0 0; font-weight: 400; font-size: 1rem;">Und das bedeutet <strong style="color: #1b516a !important;">Selbstverantwortung</strong>.</h3>
 							</div>
-							<div class="bewegt-window" style="flex: 0 0 100%; box-sizing: border-box; padding: 1.5rem 1.8rem; text-align: center;">
+						</div>
+
+						<div class="bewegt-window" style="flex: 0 0 100%; box-sizing: border-box; padding: 2.5rem 1.5rem; display: flex; flex-direction: column; align-items: center;">
+							<svg viewBox="0 0 300 145" style="width: 100%; max-width: 300px; height: auto; display: block;">
+								<path d="M 63.4,50 A 100,100 0 0 0 236.6,50" fill="none" stroke="rgba(232, 162, 44, 0.6)" stroke-width="2" />
+								<line x1="119.1" y1="95.1" x2="103.6" y2="142.7" stroke="rgba(232, 162, 44, 0.6)" stroke-width="2" stroke-linecap="round" />
+							</svg>
+							<p style="margin: -1rem 0 0;">Ich bin davon überzeugt, dass …</p>
+							<div style="max-width: 400px; text-align: center; margin-top: 1rem;">
 								<p style="margin: 0;">… wir Veränderungen im Außen nur dadurch bewirken können, indem wir uns innerlich für Veränderung öffnen.</p>
 								<h3 style="margin: 0.6em 0 0; font-weight: 400; font-size: 1rem;">Und das erfordert <strong style="color: #1b516a !important;">Mut</strong>.</h3>
 							</div>
-							<div class="bewegt-window" style="flex: 0 0 100%; box-sizing: border-box; padding: 1.5rem 1.8rem; text-align: center;">
+						</div>
+
+						<div class="bewegt-window" style="flex: 0 0 100%; box-sizing: border-box; padding: 2.5rem 1.5rem; display: flex; flex-direction: column; align-items: center;">
+							<svg viewBox="0 0 300 145" style="width: 100%; max-width: 300px; height: auto; display: block;">
+								<path d="M 63.4,50 A 100,100 0 0 0 236.6,50" fill="none" stroke="rgba(232, 162, 44, 0.6)" stroke-width="2" />
+								<line x1="180.9" y1="95.1" x2="196.4" y2="142.7" stroke="rgba(232, 162, 44, 0.6)" stroke-width="2" stroke-linecap="round" />
+							</svg>
+							<p style="margin: -1rem 0 0;">Ich bin davon überzeugt, dass …</p>
+							<div style="max-width: 400px; text-align: center; margin-top: 1rem;">
 								<p style="margin: 0;">… wir so viel mehr sind, als unsere fünf Sinne und unser rationaler Verstand uns begreifen lassen.</p>
 								<h3 style="margin: 0.6em 0 0; font-weight: 400; font-size: 1rem;">Und das bringt <strong style="color: #1b516a !important;">Verbundenheit</strong>.</h3>
 							</div>
-							<div class="bewegt-window" style="flex: 0 0 100%; box-sizing: border-box; padding: 1.5rem 1.8rem; text-align: center;">
+						</div>
+
+						<div class="bewegt-window" style="flex: 0 0 100%; box-sizing: border-box; padding: 2.5rem 1.5rem; display: flex; flex-direction: column; align-items: center;">
+							<svg viewBox="0 0 300 145" style="width: 100%; max-width: 300px; height: auto; display: block;">
+								<path d="M 63.4,50 A 100,100 0 0 0 236.6,50" fill="none" stroke="rgba(232, 162, 44, 0.6)" stroke-width="2" />
+								<line x1="230.9" y1="58.8" x2="271.4" y2="88.2" stroke="rgba(232, 162, 44, 0.6)" stroke-width="2" stroke-linecap="round" />
+							</svg>
+							<p style="margin: -1rem 0 0;">Ich bin davon überzeugt, dass …</p>
+							<div style="max-width: 400px; text-align: center; margin-top: 1rem;">
 								<p style="margin: 0;">… wir lernen dürfen, all unsere Gefühle da sein zu lassen, sie wahr- und anzunehmen, ihnen zu lauschen und zu vertrauen.</p>
 								<h3 style="margin: 0.6em 0 0; font-weight: 400; font-size: 1rem;">Und das ist <strong style="color: #1b516a !important;">Menschsein</strong>.</h3>
 							</div>
 						</div>
+
 					</div>
 				</div>
+
+				<div class="inner" style="max-width: 1000px;">
+					<div style="display: flex; align-items: center; justify-content: center; gap: 0.8rem; margin-top: 1rem;">
+						<button type="button" id="bewegt-prev" aria-label="Vorherige Überzeugung" style="background: none; border: none; cursor: pointer; color: #1b516a; opacity: 0.6; font-size: 1.2rem; padding: 0.3rem; flex-shrink: 0;">←</button>
+						<button type="button" id="bewegt-next" aria-label="Nächste Überzeugung" style="background: none; border: none; cursor: pointer; color: #1b516a; opacity: 0.6; font-size: 1.2rem; padding: 0.3rem; flex-shrink: 0;">→</button>
+					</div>
+				</div>
+			</section>
+
+
 			</section>
 
 
@@ -817,15 +829,11 @@
 		(function() {
 			var total = 4;
 			var current = 1;
-			var rays = document.querySelectorAll('.bewegt-ray');
 			var dots = document.querySelectorAll('.bewegt-dot');
 			var track = document.getElementById('bewegt-track');
 
 			function showStep(step) {
 				current = step;
-				rays.forEach(function(el) {
-					el.classList.toggle('active', el.getAttribute('data-step') === String(step));
-				});
 				dots.forEach(function(el) {
 					el.classList.toggle('active', el.getAttribute('data-step') === String(step));
 				});
@@ -857,27 +865,6 @@
 			});
 
 			showStep(1);
-
-			// Einleitungssatz mittig im Halbkreis positionieren
-			var svg = document.getElementById('bewegt-svg');
-			var diagram = document.getElementById('bewegt-diagram');
-			var intro = document.getElementById('bewegt-intro');
-			var VB_W = 680, VB_H = 300;
-
-			function positionIntro() {
-				if (!svg || !diagram || !intro) { return; }
-				var rect = svg.getBoundingClientRect();
-				if (rect.width === 0) { return; }
-				var scaleX = rect.width / VB_W;
-				var scaleY = rect.height / VB_H;
-				intro.style.left = (340 * scaleX) + 'px';
-				intro.style.top = (116 * scaleY) + 'px';
-				intro.style.transform = 'translate(-50%, -50%)';
-			}
-
-			positionIntro();
-			window.addEventListener('resize', positionIntro);
-			window.addEventListener('load', positionIntro);
 		})();
 		</script>
 
